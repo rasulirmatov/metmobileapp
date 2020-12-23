@@ -7,9 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.view.animation.AnimationUtils
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import kotlinx.android.synthetic.main.fragment_splash_screen.*
 
 class SplashScreenFragment : Fragment() {
 
@@ -23,7 +25,8 @@ class SplashScreenFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
+        val animationRotate = AnimationUtils.loadAnimation(context, R.anim.zoom_out)
+        splashscreen_img.startAnimation(animationRotate)
 //        requireActivity().window.decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 //        requireActivity().window.statusBarColor = ContextCompat.getColor(requireContext(),R.color.white);// set status background white
         Handler().postDelayed({
@@ -37,6 +40,10 @@ class SplashScreenFragment : Fragment() {
                             true
                         ).build()
                 )
+
+
+
+
         }, 2000)
     }
 }

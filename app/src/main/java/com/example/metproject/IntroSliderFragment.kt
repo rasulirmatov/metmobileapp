@@ -137,6 +137,7 @@ class IntroSliderFragment : Fragment() {
                 .navigate(R.id.action_introSliderFragment_to_termsofAgreementFragment)
 
 
+
         }
     }
 

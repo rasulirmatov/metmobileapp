@@ -40,7 +40,18 @@ class SignInFragment : Fragment() {
                     .navigate(R.id.action_signInFragment_to_signUpFragment)
             }
         }
-
+        binding.forgotPassword.setOnClickListener {
+            view?.let {
+                Navigation.findNavController(it)
+                    .navigate(R.id.action_signInFragment_to_forgotPasswordFragment)
+            }
+        }
+        binding.skipSignIn.setOnClickListener{
+            view?.let {
+                Navigation.findNavController(it)
+                    .navigate(R.id.action_signInFragment_to_mainFragment)
+            }
+        }
 
     }
 }

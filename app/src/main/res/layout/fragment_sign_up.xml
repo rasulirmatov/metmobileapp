@@ -21,13 +21,13 @@
             app:layout_constraintEnd_toEndOf="parent"
 
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/back_btn" />
+            app:layout_constraintTop_toBottomOf="@+id/backBtn" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/editTextTextName"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
-            android:layout_height="55dp"
+            android:layout_height="58dp"
             android:layout_marginStart="50dp"
             android:layout_marginEnd="50dp"
             android:layout_marginTop="35dp"
@@ -53,7 +53,7 @@
             android:id="@+id/editTextTextSurname"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
-            android:layout_height="55dp"
+            android:layout_height="58dp"
             android:layout_marginStart="50dp"
             android:layout_marginEnd="50dp"
             android:hint="Насаб"
@@ -80,7 +80,7 @@
             android:id="@+id/editTextTextEmailAddress"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
-            android:layout_height="55dp"
+            android:layout_height="58dp"
             android:layout_marginStart="50dp"
             android:layout_marginEnd="50dp"
             android:layout_marginTop="20dp"
@@ -94,7 +94,7 @@
             app:layout_constraintTop_toBottomOf="@+id/editTextTextSurname">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/email_sign_up"
+                android:id="@+id/email_password_recovery"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/roboto_medium"
@@ -106,7 +106,7 @@
             android:id="@+id/editTextTextPassword"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
-            android:layout_height="55dp"
+            android:layout_height="58dp"
             android:layout_marginStart="50dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="50dp"
@@ -146,7 +146,7 @@
             app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
 
         <ImageView
-            android:id="@+id/back_btn"
+            android:id="@+id/backBtn"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginLeft="20dp"
@@ -161,10 +161,10 @@
             android:layout_height="30dp"
             android:src="@drawable/ic_favicon_edited"
             android:layout_marginEnd="50dp"
-            app:layout_constraintBottom_toBottomOf="@+id/back_btn"
+            app:layout_constraintBottom_toBottomOf="@+id/backBtn"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/back_btn"
-            app:layout_constraintTop_toTopOf="@+id/back_btn" />
+            app:layout_constraintStart_toEndOf="@+id/backBtn"
+            app:layout_constraintTop_toTopOf="@+id/backBtn" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
