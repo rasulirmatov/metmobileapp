@@ -15,11 +15,6 @@
             app:destination="@id/introSliderFragment"
             />
     </fragment>
-    <activity
-        android:id="@+id/mainActivity"
-        android:name="com.example.metproject.MainActivity"
-        android:label="activity_main"
-        tools:layout="@layout/activity_main" />
     <fragment
         android:id="@+id/introSliderFragment"
         android:name="com.example.metproject.IntroSliderFragment"
@@ -46,7 +41,7 @@
             app:destination="@id/forgotPasswordFragment" />
         <action
             android:id="@+id/action_signInFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
+            app:destination="@id/home" />
     </fragment>
     <dialog
         android:id="@+id/termsofAgreementFragment"
@@ -68,7 +63,7 @@
             app:enterAnim="@anim/slide_from_left" />
         <action
             android:id="@+id/action_signUpFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
+            app:destination="@id/home" />
     </fragment>
     <fragment
         android:id="@+id/changePasswordFragment"
@@ -104,12 +99,18 @@
             app:destination="@id/forgotPasswordFragment" />
     </fragment>
     <fragment
-        android:id="@+id/mainFragment"
+        android:id="@+id/home"
         android:name="com.example.metproject.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
-        <action
-            android:id="@+id/action_mainFragment_to_mainActivity"
-            app:destination="@id/mainActivity" />
-    </fragment>
+        tools:layout="@layout/fragment_main" />
+    <fragment
+        android:id="@+id/classes"
+        android:name="com.example.metproject.ClassFragment"
+        android:label="fragment_class"
+        tools:layout="@layout/fragment_class" />
+    <fragment
+        android:id="@+id/subjects"
+        android:name="com.example.metproject.SubjectsFragment"
+        android:label="fragment_subjects"
+        tools:layout="@layout/fragment_subjects" />
 </navigation>

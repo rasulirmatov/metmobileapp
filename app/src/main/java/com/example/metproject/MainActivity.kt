@@ -3,9 +3,11 @@ package com.example.metproject
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.core.view.forEach
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupWithNavController
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -18,10 +20,24 @@ class MainActivity : AppCompatActivity() {
         findNavController(R.id.myNavHostFragment).addOnDestinationChangedListener { _, destination, _ ->
             bottomNavigationView.visibility = View.GONE
             bottomNavigationView.menu.forEach {
-                if (it.itemId == destination.id || destination.id == R.id.mainFragment) {
+                if (it.itemId == destination.id || destination.id == R.id.home) {
                     bottomNavigationView.visibility = View.VISIBLE
                 }
             }
         }
+        bottomNavigationView.setupWithNavController(
+            Navigation.findNavController(
+                this,
+                R.id.myNavHostFragment
+            )
+        )
+
+        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+            NavigationUI.onNavDestinationSelected(
+                item,
+                Navigation.findNavController(this, R.id.myNavHostFragment)
+            )
+        }
+
     }
 }
