@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_more"
+        android:icon="@drawable/ic_menu_1"
+        android:title=""
+        app:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/account"
+                android:icon="@drawable/ic_account"
+                android:title="Аккаунт"
+                />
+            <item
+                android:id="@+id/settings"
+                android:title="Насбкуни"
+                android:icon="@drawable/ic_settings_1" />
+            <item
+                android:id="@+id/additional_information"
+                android:icon="@drawable/ic_user_manual"
+                android:title="Маълумоти иловаги">
+                <menu>
+                    <item
+                        android:id="@+id/for_students"
+                        android:icon="@drawable/ic_schoolboy_at_a_desk"
+                        android:orderInCategory="1"
+                        android:title="Ба талабаҳо" />
+                    <item
+                        android:id="@+id/for_teachers"
+                        android:icon="@drawable/ic_training"
+                        android:orderInCategory="2"
+                        android:title="Ба муаллимон" />
+                    <item
+                        android:id="@+id/for_parents"
+                        android:icon="@drawable/ic_family"
+                        android:orderInCategory="3"
+                        android:title="Ба волидайн" />
+                </menu>
+            </item>
+            <item
+                android:id="@+id/about_app"
+                android:title="Дарбораи барнома"
+                android:icon="@drawable/ic_info" />
+            <item
+                android:id="@+id/exit"
+                android:title="Баромадан"
+                android:icon="@drawable/ic_exit" />
+        </menu>
+    </item>
+</menu>

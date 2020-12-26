@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/ic_home"
+        android:title="Асоси" />
+    <item
+        android:id="@+id/subjects"
+        android:icon="@drawable/ic_book"
+        android:title="Фанҳо" />
+    <item
+        android:id="@+id/classes"
+        android:icon="@drawable/ic_classroom"
+        android:title="Синфҳо" />
+
+    <!--    <item-->
+    <!--        android:id="@+id/mmt"-->
+    <!--        android:icon="@drawable/ic_mmt"-->
+    <!--        android:title="ММТ" />-->
+    <!--    <item-->
+    <!--        android:id="@+id/olympiada"-->
+    <!--        android:icon="@drawable/ic_olympiada"-->
+    <!--        android:title="Олимпиада" />-->
+
+</menu>
