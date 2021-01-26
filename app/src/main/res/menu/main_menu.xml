@@ -6,6 +6,7 @@
         android:icon="@drawable/ic_menu_1"
         android:title=""
         app:showAsAction="always">
+
         <menu>
             <item
                 android:id="@+id/account"
@@ -14,7 +15,7 @@
                 />
             <item
                 android:id="@+id/settings"
-                android:title="Насбкуни"
+                android:title="Ҷурсозиҳо"
                 android:icon="@drawable/ic_settings_1" />
             <item
                 android:id="@+id/additional_information"
@@ -47,5 +48,6 @@
                 android:title="Баромадан"
                 android:icon="@drawable/ic_exit" />
         </menu>
+
     </item>
 </menu>

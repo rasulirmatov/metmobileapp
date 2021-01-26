@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.metproject.R
 import com.example.metproject.models.HomeSliderModel
+import com.squareup.picasso.Picasso
 
 
 class HomeSliderAdapter(private  val homeSlides: List<HomeSliderModel>)
@@ -30,7 +31,7 @@ class HomeSliderAdapter(private  val homeSlides: List<HomeSliderModel>)
         holder.bind(homeSlides[position])
     }
 
-    inner class HomeSliderViewHolder(view: View) : RecyclerView.ViewHolder(view){
+    inner class HomeSliderViewHolder(private val view: View) : RecyclerView.ViewHolder(view){
 
         private val textTitle = view.findViewById<TextView>(R.id.slider_header_text)
         private val textDescription = view.findViewById<TextView>(R.id.slider_body_text)
@@ -39,7 +40,10 @@ class HomeSliderAdapter(private  val homeSlides: List<HomeSliderModel>)
         fun bind(homeSlide: HomeSliderModel){
             textTitle.text = homeSlide.title
             textDescription.text = homeSlide.description
-            ImageIcon.setImageResource(homeSlide.icon)
+            Picasso.with(view.context)
+                .load(homeSlide.icon)
+                .fit()
+                .into(ImageIcon)
         }
     }
 }

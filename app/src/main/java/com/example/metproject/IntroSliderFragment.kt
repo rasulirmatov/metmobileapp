@@ -75,6 +75,7 @@ class IntroSliderFragment : Fragment() {
 
         preferences =
             this.requireActivity().getSharedPreferences("IntroSlider", Context.MODE_PRIVATE)
+
         introSliderViewPager.adapter = introSliderAdapter
 
         if (!preferences.getBoolean(pref_show_intro, true)) {
@@ -128,16 +129,12 @@ class IntroSliderFragment : Fragment() {
 //        editor.putBoolean(pref_show_intro, false)
 //        editor.apply()
         view?.let {
-
           // Another way to show modal bottom sheet
 //          val modalbutton = TermsofAgreementFragment()
 //          modalbutton.show(parentFragmentManager,"Tag")
 
             Navigation.findNavController(it)
                 .navigate(R.id.action_introSliderFragment_to_termsofAgreementFragment)
-
-
-
         }
     }
 

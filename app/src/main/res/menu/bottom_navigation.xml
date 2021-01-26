@@ -14,6 +14,22 @@
         android:icon="@drawable/ic_classroom"
         android:title="Синфҳо" />
 
+</menu>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <!--    <item-->
     <!--        android:id="@+id/mmt"-->
     <!--        android:icon="@drawable/ic_mmt"-->
@@ -22,5 +38,3 @@
     <!--        android:id="@+id/olympiada"-->
     <!--        android:icon="@drawable/ic_olympiada"-->
     <!--        android:title="Олимпиада" />-->
-
-</menu>

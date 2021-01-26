@@ -34,8 +34,9 @@ class SignUpFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.backBtn.setOnClickListener(){
-            Navigation.findNavController(it)
-                .navigate(R.id.action_signUpFragment_to_signInFragment)
+//            Navigation.findNavController(it)
+//                .navigate(R.id.action_signUpFragment_to_signInFragment)
+            requireActivity().onBackPressed()
         }
 
     }

@@ -60,6 +60,4 @@ class TermsofAgreementFragment : BottomSheetDialogFragment() {
         }
 
     }
-
-
 }

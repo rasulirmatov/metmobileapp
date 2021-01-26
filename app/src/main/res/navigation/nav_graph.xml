@@ -9,45 +9,68 @@
         android:id="@+id/splashScreenFragment"
         android:name="com.example.metproject.SplashScreenFragment"
         android:label="fragment_splash_screen"
-        tools:layout="@layout/fragment_splash_screen" >
+        tools:layout="@layout/fragment_splash_screen">
         <action
             android:id="@+id/action_splashScreenFragment_to_introSliderFragment"
             app:destination="@id/introSliderFragment"
+            app:popUpTo="@id/splashScreenFragment"
+            app:popUpToInclusive ="true"
             />
+        <action
+            android:id="@+id/action_splashScreenFragment_to_home"
+            app:destination="@id/home"
+            app:popUpTo="@id/splashScreenFragment"
+            app:popUpToInclusive="true" />
     </fragment>
+
     <fragment
         android:id="@+id/introSliderFragment"
         android:name="com.example.metproject.IntroSliderFragment"
         android:label="fragment_intro_slider"
-        tools:layout="@layout/fragment_intro_slider" >
+        tools:layout="@layout/fragment_intro_slider">
         <action
             android:id="@+id/action_introSliderFragment_to_termsofAgreementFragment"
-            app:destination="@id/termsofAgreementFragment" />
+            app:destination="@id/termsofAgreementFragment"
+            app:popUpTo="@id/splashScreenFragment"
+            app:popUpToInclusive ="true"
+            />
         <action
             android:id="@+id/action_introSliderFragment_to_signInFragment"
-            app:destination="@id/signInFragment" />
+            app:destination="@id/signInFragment"
+            app:popUpTo="@id/splashScreenFragment"
+            app:popUpToInclusive ="true"
+            />
     </fragment>
+
     <fragment
         android:id="@+id/signInFragment"
         android:name="com.example.metproject.SignInFragment"
         android:label="fragment_sign_in"
-        tools:layout="@layout/fragment_sign_in" >
+        tools:layout="@layout/fragment_sign_in">
         <action
             android:id="@+id/action_signInFragment_to_signUpFragment"
             app:destination="@id/signUpFragment"
-            app:enterAnim="@anim/slide_to_left" />
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out"
+            app:popUpTo="@id/signInFragment"
+            app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_signInFragment_to_forgotPasswordFragment"
             app:destination="@id/forgotPasswordFragment" />
         <action
             android:id="@+id/action_signInFragment_to_mainFragment"
-            app:destination="@id/home" />
+            app:destination="@id/home"
+            app:popUpTo="@id/splashScreenFragment"
+            app:popUpToInclusive ="true"
+            />
     </fragment>
     <dialog
         android:id="@+id/termsofAgreementFragment"
         android:name="com.example.metproject.TermsofAgreementFragment"
         android:label="fragment_termsof_agreement_list_dialog"
-        tools:layout="@layout/fragment_termsof_agreement_dialog" >
+        tools:layout="@layout/fragment_termsof_agreement_dialog">
         <action
             android:id="@+id/action_termsofAgreementFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
@@ -56,11 +79,14 @@
         android:id="@+id/signUpFragment"
         android:name="com.example.metproject.SignUpFragment"
         android:label="fragment_sign_up"
-        tools:layout="@layout/fragment_sign_up" >
+        tools:layout="@layout/fragment_sign_up">
         <action
             android:id="@+id/action_signUpFragment_to_signInFragment"
             app:destination="@id/signInFragment"
-            app:enterAnim="@anim/slide_from_left" />
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
         <action
             android:id="@+id/action_signUpFragment_to_mainFragment"
             app:destination="@id/home" />
@@ -69,7 +95,7 @@
         android:id="@+id/changePasswordFragment"
         android:name="com.example.metproject.ChangePasswordFragment"
         android:label="fragment_change_password"
-        tools:layout="@layout/fragment_change_password" >
+        tools:layout="@layout/fragment_change_password">
         <action
             android:id="@+id/action_changePasswordFragment_to_forgotPasswordFragment"
             app:destination="@id/forgotPasswordFragment" />
@@ -78,7 +104,7 @@
         android:id="@+id/forgotPasswordFragment"
         android:name="com.example.metproject.ForgotPasswordFragment"
         android:label="fragment_forgot_password"
-        tools:layout="@layout/fragment_forgot_password" >
+        tools:layout="@layout/fragment_forgot_password">
         <action
             android:id="@+id/action_forgotPasswordFragment_to_passwordRecoveryFragment"
             app:destination="@id/passwordRecoveryFragment" />
@@ -90,7 +116,7 @@
         android:id="@+id/passwordRecoveryFragment"
         android:name="com.example.metproject.PasswordRecoveryFragment"
         android:label="fragment_password_recovery"
-        tools:layout="@layout/fragment_password_recovery" >
+        tools:layout="@layout/fragment_password_recovery">
         <action
             android:id="@+id/action_passwordRecoveryFragment_to_changePasswordFragment"
             app:destination="@id/changePasswordFragment" />
@@ -102,15 +128,30 @@
         android:id="@+id/home"
         android:name="com.example.metproject.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_home_to_settingsFragment"
+            app:destination="@id/settingsFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+
     <fragment
         android:id="@+id/classes"
-        android:name="com.example.metproject.ClassFragment"
+        android:name="com.example.metproject.ClassesFragment"
         android:label="fragment_class"
-        tools:layout="@layout/fragment_class" />
+        tools:layout="@layout/fragment_classes"/>
     <fragment
         android:id="@+id/subjects"
         android:name="com.example.metproject.SubjectsFragment"
         android:label="fragment_subjects"
-        tools:layout="@layout/fragment_subjects" />
+        tools:layout="@layout/fragment_subjects" >
+        <action
+            android:id="@+id/action_subjects_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.metproject.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>
