@@ -41,5 +41,6 @@ class IntroSliderAdapter(private  val introSlides: List<IntroSlide>)
             textDescription.text = introSlide.description
             ImageIcon.setImageResource(introSlide.icon)
         }
+
     }
 }

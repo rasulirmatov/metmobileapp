@@ -2,11 +2,14 @@
 <resources>
 
     <color name="primary">#07294C</color>
+    <color name="colorPrimaryDark">#07294C</color>
+    <color name="colorPrimary">#07294C</color>
     <color name="secondary">#FFC600</color>
     <color name="background">#FFFFFF</color>
     <color name="backgroundDarker">#f4f4f5</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFF</color>
+
 
 
     <!-- Modules Card Color    -->

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/splashScreenFragment">
+    app:startDestination="@id/pdfViewerFragment">
 
     <fragment
         android:id="@+id/splashScreenFragment"
@@ -139,19 +139,68 @@
         android:id="@+id/classes"
         android:name="com.example.metproject.ClassesFragment"
         android:label="fragment_class"
-        tools:layout="@layout/fragment_classes"/>
+        tools:layout="@layout/fragment_classes">
+        <action
+            android:id="@+id/action_classes_to_subjectsBottomSheetDialogFragment"
+            app:destination="@id/subjectsBottomSheetDialogFragment" />
+    </fragment>
     <fragment
         android:id="@+id/subjects"
         android:name="com.example.metproject.SubjectsFragment"
         android:label="fragment_subjects"
         tools:layout="@layout/fragment_subjects" >
         <action
-            android:id="@+id/action_subjects_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
+            android:id="@+id/action_subjects_to_classesBottomSheetDialogFragment"
+            app:destination="@id/classesBottomSheetDialogFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.metproject.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <dialog
+        android:id="@+id/subjectsBottomSheetDialogFragment"
+        android:name="com.example.metproject.SubjectsBottomSheetDialogFragment"
+        android:label="SubjectsBottomSheetDialogFragment"
+        tools:layout="@layout/fragment_subjects_bottom_sheet_dialog"
+        >
+        <action
+            android:id="@+id/action_subjectsBottomSheetDialogFragment_to_themeFragmentList"
+            app:destination="@id/themeFragmentList" />
+    </dialog>
+    <dialog
+        android:id="@+id/classesBottomSheetDialogFragment"
+        android:name="com.example.metproject.ClassesBottomSheetDialogFragment"
+        android:label="fragment_classes_bottom_sheet_dialog"
+        tools:layout="@layout/fragment_classes_bottom_sheet_dialog" >
+        <action
+            android:id="@+id/action_classesBottomSheetDialogFragment_to_themeFragmentList"
+            app:destination="@id/themeFragmentList" />
+    </dialog>
+    <fragment
+        android:id="@+id/themeFragmentList"
+        android:name="com.example.metproject.ThemeFragmentList"
+        android:label="fragment_theme_list"
+        tools:layout="@layout/fragment_theme_list" >
+        <action
+            android:id="@+id/action_themeFragmentList_to_themeDetailFragment"
+            app:destination="@id/themeDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/themeDetailFragment"
+        tools:layout="@layout/fragment_theme_detail"
+        android:name="com.example.metproject.ThemeDetailFragment"
+        android:label="ThemeDetailFragment" >
+        <action
+            android:id="@+id/action_themeDetailFragment_to_pdfViewerFragment"
+            app:destination="@id/pdfViewerFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/pdfViewerFragment"
+        android:name="com.example.metproject.PdfViewerFragment"
+        android:label="fragment_pdf_viewer"
+        tools:layout="@layout/fragment_pdf_viewer" />
+
 </navigation>

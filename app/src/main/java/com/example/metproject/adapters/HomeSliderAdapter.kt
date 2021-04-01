@@ -46,4 +46,5 @@ class HomeSliderAdapter(private  val homeSlides: List<HomeSliderModel>)
                 .into(ImageIcon)
         }
     }
+
 }

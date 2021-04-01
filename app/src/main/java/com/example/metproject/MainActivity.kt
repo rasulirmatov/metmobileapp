@@ -18,10 +18,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var  appSettingPrefs: SharedPreferences
-
-
-
+    lateinit var appSettingPrefs: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
 //        window.decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//  set status text dark
@@ -30,15 +27,13 @@ class MainActivity : AppCompatActivity() {
 //        val sharedPrefsEdit: SharedPreferences.Editor = appSettingPrefs.edit()
         val isNightModeOn: Boolean = appSettingPrefs.getBoolean("NightMode", false)
 
-        if(isNightModeOn){
+        if (isNightModeOn) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-
 
 
         // Disable Android OS Default Nigth Mode
@@ -149,5 +144,7 @@ class MainActivity : AppCompatActivity() {
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
     }
+
+
 
 }

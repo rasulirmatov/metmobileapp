@@ -17,7 +17,10 @@ import com.example.metproject.R
 import com.example.metproject.models.MainFragmentRecomendationModel
 import com.example.metproject.views.FadingImageView
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.subjects_fragment_card_item.view.*
+import kotlinx.android.synthetic.main.fragment_main_recomendations_item.view.*
+import kotlinx.android.synthetic.main.fragment_subjects_card_item.view.*
+import kotlinx.android.synthetic.main.fragment_subjects_card_item.view.main_fragment_card_view
+import kotlinx.android.synthetic.main.fragment_subjects_card_item.view.subject_name
 
 
 class MainFragmentRecomendationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

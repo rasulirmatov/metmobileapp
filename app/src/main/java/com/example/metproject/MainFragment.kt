@@ -1,7 +1,11 @@
 package com.example.metproject
 
+import android.graphics.Color
 import android.os.Bundle
-import android.view.*
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.databinding.DataBindingUtil
@@ -11,9 +15,15 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.metproject.adapters.HomeSliderAdapter
 import com.example.metproject.adapters.MainFragmentRecomendationAdapter
+import com.example.metproject.adapters.SliderAdapter
 import com.example.metproject.databinding.FragmentMainBinding
 import com.example.metproject.models.HomeSliderModel
 import com.example.metproject.models.MainFragmentRecomendationModel
+import com.example.metproject.models.SliderModel
+import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
+import com.smarteist.autoimageslider.IndicatorView.draw.controller.DrawController
+import com.smarteist.autoimageslider.SliderAnimations
+import com.smarteist.autoimageslider.SliderView
 
 
 class MainFragment : Fragment() {
@@ -23,6 +33,8 @@ class MainFragment : Fragment() {
 
     private lateinit var adapter: MainFragmentRecomendationAdapter
     private var RecomendationList = mutableListOf<MainFragmentRecomendationModel>()
+
+    private lateinit var sliderAdapter: SliderAdapter
 
 
     private val homeSliderAdapter =
@@ -127,7 +139,9 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Home Slider
-        binding.homeSliderViewPager.adapter = homeSliderAdapter
+//        binding.homeSliderViewPager.adapter = homeSliderAdapter
+
+
 
         // Recomendation List
         val llm = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false)
@@ -157,7 +171,52 @@ class MainFragment : Fragment() {
                 else -> super.onOptionsItemSelected(it)
             }
         }
+        sliderAdapter = SliderAdapter(requireContext())
+        renewItems(binding.imageSlider)
+        binding.imageSlider.setSliderAdapter(sliderAdapter);
+        binding.imageSlider.setIndicatorAnimation(IndicatorAnimationType.WORM); //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
+        binding.imageSlider.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
+        binding.imageSlider.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH);
+        binding.imageSlider.setIndicatorSelectedColor(Color.WHITE);
+        binding.imageSlider.setIndicatorUnselectedColor(Color.GRAY);
+        binding.imageSlider.setScrollTimeInSec(3);
+        binding.imageSlider.setAutoCycle(true);
+        binding.imageSlider.startAutoCycle();
 
+        binding.imageSlider.setOnIndicatorClickListener(DrawController.ClickListener {
+            Log.i(
+                "GGG",
+                "onIndicatorClicked: " + binding.imageSlider.getCurrentPagePosition()
+            )
+        })
+
+    }
+
+    fun renewItems(view: View?) {
+        val sliderItemList: MutableList<SliderModel> = ArrayList()
+        //dummy data
+        for (i in 0..4) {
+            val sliderItem = SliderModel()
+            sliderItem.description = "Slider Item $i"
+//            if (i % 2 == 0) {
+//                sliderItem.imageUrl = "https://images.pexels.com/photos/929778/pexels-photo-929778.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+//            } else {
+                sliderItem.imageUrl = "https://mettj.ru/front/images/slider/s-4.jpg"
+//            }
+            sliderItemList.add(sliderItem)
+        }
+        sliderAdapter.renewItems(sliderItemList)
+    }
+
+    fun removeLastItem(view: View?) {
+        if (sliderAdapter.getCount() - 1 >= 0) sliderAdapter.deleteItem(sliderAdapter.getCount() - 1)
+    }
+
+    fun addNewItem(view: View?) {
+        val sliderItem = SliderModel()
+        sliderItem.description = "Slider Item Added Manually"
+        sliderItem.imageUrl = "https://images.pexels.com/photos/929778/pexels-photo-929778.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+        sliderAdapter.addItem(sliderItem)
     }
 
 

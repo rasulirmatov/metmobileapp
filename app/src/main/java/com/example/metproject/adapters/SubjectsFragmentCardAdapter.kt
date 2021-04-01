@@ -4,14 +4,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.metproject.R
 import com.example.metproject.models.SubjectsFragmentCardModel
 import com.example.metproject.viewHolder.SubjectsFragmentCardViewHolder
-import kotlin.coroutines.coroutineContext
-import kotlin.math.log
 
 class SubjectsFragmentCardAdapter : RecyclerView.Adapter<SubjectsFragmentCardViewHolder>() {
 
@@ -22,7 +19,7 @@ class SubjectsFragmentCardAdapter : RecyclerView.Adapter<SubjectsFragmentCardVie
         viewType: Int
     ): SubjectsFragmentCardViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.subjects_fragment_card_item, parent, false)
+            .inflate(R.layout.fragment_subjects_card_item, parent, false)
         return SubjectsFragmentCardViewHolder(view)
     }
 
@@ -41,11 +38,12 @@ class SubjectsFragmentCardAdapter : RecyclerView.Adapter<SubjectsFragmentCardVie
 
             Log.d("itemData" ,listSubjects[position].subject_id.toString())
 
-//            Navigation.findNavController(it).navigate(R.id.signInFragment)
+            Navigation.findNavController(it).navigate(R.id.action_subjects_to_classesBottomSheetDialogFragment)
 
         }
 
         holder.bind(listSubjects[position])
+
     }
 
     fun set(list: MutableList<SubjectsFragmentCardModel>) {

@@ -6,8 +6,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="@color/background"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/background">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/topAppBar"
@@ -32,25 +32,44 @@
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/subjects_toolbar"
                 android:layout_width="match_parent"
-                android:background="@color/background"
-                android:layout_height="?attr/actionBarSize">
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/background">
 
-                <androidx.appcompat.widget.SearchView
-                    android:id="@+id/search_view"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="10dp"
-                    android:paddingStart="-12dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="@color/background"
-                    android:layoutDirection="rtl"
-                    app:goIcon="@drawable/ic_search"
-                    app:queryBackground="@android:color/transparent"
-                    app:queryHint="Ҷустуҷӯ..."
-                    app:searchIcon="@drawable/ic_search"
-                    app:showDividers="none" />
+                    android:gravity="center|right"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:id="@+id/subject_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="Фанҳо"
+                        android:textAllCaps="true"
+                        android:textColor="@color/primary"
+                        android:textSize="18sp" />
+
+                    <androidx.appcompat.widget.SearchView
+                        android:id="@+id/search_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@color/background"
+                        android:layoutDirection="rtl"
+                        android:paddingStart="-12dp"
+                        app:goIcon="@drawable/ic_search"
+                        app:queryBackground="@android:color/transparent"
+                        app:queryHint="Ҷустуҷӯ..."
+                        app:searchIcon="@drawable/ic_search"
+                        app:showDividers="none" />
+                </LinearLayout>
+
 
             </com.google.android.material.appbar.MaterialToolbar>
 
@@ -67,6 +86,7 @@
                 android:id="@+id/rv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -40,14 +40,14 @@ class MainFragmentModulesAdapter : RecyclerView.Adapter<MainFragmentModulesViewH
                 Toast.LENGTH_SHORT
             ).show()
 
-
             Log.d("itemData", listModules[position].module_id.toString())
 
-//            Navigation.findNavController(it).navigate(R.id.signInFragment)
+//          Navigation.findNavController(it).navigate(R.id.signInFragment)
 
         }
 
         holder.bind(listModules[position])
+
     }
 
     fun set(list: MutableList<MainFragmentModulesModel>) {

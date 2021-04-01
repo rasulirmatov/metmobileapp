@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.metproject.models.MainFragmentModulesModel
 import com.example.metproject.models.SubjectsFragmentCardModel
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.subjects_fragment_card_item.view.*
+import kotlinx.android.synthetic.main.fragment_main_recomendations_item.view.*
+//import kotlinx.android.synthetic.main.fragment_subjects_card_item.view.*
+import kotlinx.android.synthetic.main.fragment_subjects_card_item.view.subject_name
 
 class MainFragmentModulesViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
 

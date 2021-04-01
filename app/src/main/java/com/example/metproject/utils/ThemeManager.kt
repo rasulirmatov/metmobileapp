@@ -28,7 +28,7 @@
  * THE SOFTWARE.
  */
 
-package com.example.metproject.util
+package com.example.metproject.utils
 
 import androidx.appcompat.app.AppCompatDelegate
 

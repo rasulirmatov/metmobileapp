@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.metproject.adapters.SubjectsFragmentCardAdapter
 import com.example.metproject.databinding.FragmentSubjectsBinding
 import com.example.metproject.models.SubjectsFragmentCardModel
@@ -43,12 +45,11 @@ class SubjectsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         adapter = SubjectsFragmentCardAdapter()
-        val llm = LinearLayoutManager(this.context)
+        val llm = GridLayoutManager(requireContext(),2)
         binding.rv.layoutManager = llm
         binding.rv.adapter = adapter
         fillListCards()
         adapter.set(listCards)
-
 
         binding.subjectsToolbar.setNavigationIcon(R.drawable.ic_icon_go_to_back)
         binding.subjectsToolbar.setNavigationOnClickListener(View.OnClickListener {
@@ -67,14 +68,14 @@ class SubjectsFragment : Fragment() {
     private fun fillListCards() {
         listCards.add(
             SubjectsFragmentCardModel(
-                22,
+                7,
                 R.drawable.biology,
                 "Биология"
             )
         )
         listCards.add(
             SubjectsFragmentCardModel(
-                22,
+                12,
                 R.drawable.tarihiumumi,
                 "Таърихи умуми"
             )
@@ -82,21 +83,21 @@ class SubjectsFragment : Fragment() {
 
         listCards.add(
             SubjectsFragmentCardModel(
-                22,
+                32,
                 R.drawable.zanglisi,
                 "Забони англиси"
             )
         )
         listCards.add(
             SubjectsFragmentCardModel(
-                22,
+                65,
                 R.drawable.znemisi,
                 "Забони немиси"
             )
         )
         listCards.add(
             SubjectsFragmentCardModel(
-                22,
+                4,
                 R.drawable.geography,
                 "География"
             )

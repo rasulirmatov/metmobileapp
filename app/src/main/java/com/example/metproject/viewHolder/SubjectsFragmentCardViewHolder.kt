@@ -6,19 +6,19 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.metproject.models.SubjectsFragmentCardModel
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.subjects_fragment_card_item.view.*
+import kotlinx.android.synthetic.main.fragment_subjects_card_item.view.*
 
 class SubjectsFragmentCardViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
 
-    val subject_image: ImageView = itemView.subject_image
+    val subject_image: ImageView = itemView.subject_image_subject
     val subject_name: TextView = itemView.subject_name
 
     fun bind(subject: SubjectsFragmentCardModel) {
         Picasso.with(itemView.context)
             .load(subject.subject_image)
+            .centerCrop()
             .fit()
             .into(subject_image)
         subject_name.text = subject.subject_name
     }
-
 }
