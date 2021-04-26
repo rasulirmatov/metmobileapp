@@ -10,14 +10,14 @@ import com.example.metproject.R
 import com.example.metproject.models.IntroSlide
 
 
-class IntroSliderAdapter(private  val introSlides: List<IntroSlide>)
-    :RecyclerView.Adapter<IntroSliderAdapter.IntroSlideViewHolder>(){
+class IntroSliderAdapter(private val introSlides: List<IntroSlide>) :
+    RecyclerView.Adapter<IntroSliderAdapter.IntroSlideViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IntroSlideViewHolder {
-        return  IntroSlideViewHolder(
+        return IntroSlideViewHolder(
             LayoutInflater.from(parent.context).inflate(
                 R.layout.slider_item_container,
-                parent,false
+                parent, false
             )
         )
     }
@@ -30,13 +30,13 @@ class IntroSliderAdapter(private  val introSlides: List<IntroSlide>)
         holder.bind(introSlides[position])
     }
 
-    inner class IntroSlideViewHolder(view: View) : RecyclerView.ViewHolder(view){
+    inner class IntroSlideViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         private val textTitle = view.findViewById<TextView>(R.id.textTitle)
         private val textDescription = view.findViewById<TextView>(R.id.textDescription)
         private val ImageIcon = view.findViewById<ImageView>(R.id.imageSlideIcon)
 
-        fun bind(introSlide: IntroSlide){
+        fun bind(introSlide: IntroSlide) {
             textTitle.text = introSlide.title
             textDescription.text = introSlide.description
             ImageIcon.setImageResource(introSlide.icon)

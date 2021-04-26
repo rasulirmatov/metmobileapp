@@ -25,6 +25,7 @@
         android:id="@+id/fl_shadow_container"
         android:background="@drawable/bg_overlay"
         android:layout_width="match_parent"
+        android:visibility="gone"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom">
 

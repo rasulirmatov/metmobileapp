@@ -4,6 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ThemeFragmentList">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.metproject.viewModels.ThemeFragmentListViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -29,11 +36,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:textAllCaps="true"
+                    android:fontFamily="@font/roboto_medium"
                     android:text="Математика"
+                    android:textAllCaps="true"
                     android:textColor="@color/primary"
                     android:textSize="18sp"
-                    android:fontFamily="@font/roboto_medium"
                     app:layout_constraintBottom_toBottomOf="@+id/subject_indicator"
                     app:layout_constraintStart_toEndOf="@+id/subject_indicator"
                     app:layout_constraintTop_toTopOf="@+id/subject_indicator" />
@@ -43,10 +50,11 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/rv_container"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="@drawable/theme_list_background"
             android:layout_margin="10dp"
+            android:background="@drawable/theme_list_background"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -57,11 +65,11 @@
                 android:id="@+id/class_indicator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
                 android:text="Синфи"
                 android:textAllCaps="true"
                 android:textColor="#000000"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -70,9 +78,9 @@
                 android:id="@+id/class_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
                 android:fontFamily="@font/roboto_medium"
                 android:text="1"
-                android:layout_marginStart="5dp"
                 android:textAllCaps="true"
                 android:textColor="#000000"
                 android:textSize="18sp"
@@ -89,9 +97,61 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/class_indicator" />
+                app:layout_constraintTop_toBottomOf="@+id/class_indicator"
+                app:setAdapter='@{viewModel.adapter}'/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/network_problem_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/topAppBar">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/animationView"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/anim_no_internet" />
+
+                <TextView
+                    android:id="@+id/connectivity_text_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Пайвастшавӣ бо интернет гум!"
+                    android:textColor="@color/greyText"
+                    android:textSize="18sp"
+                    />
+
+                <Button
+                    android:id="@+id/btn_reload"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:text="Такрор"
+                    />
+
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

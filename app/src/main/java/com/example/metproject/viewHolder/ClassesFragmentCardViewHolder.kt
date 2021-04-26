@@ -1,17 +1,15 @@
 package com.example.metproject.viewHolder
 
-import android.view.View
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.metproject.models.ClassesFragmentCardModel
-import kotlinx.android.synthetic.main.fragment_classes_card_item.view.*
+import com.example.metproject.databinding.FragmentClassesCardItemBinding
+import com.example.metproject.models.response.ClassesItem
 
-class ClassesFragmentCardViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
+class ClassesFragmentCardViewHolder(val binding: FragmentClassesCardItemBinding) :
+    RecyclerView.ViewHolder(binding.root) {
 
-    val class_number: TextView = itemView.class_number
-
-    fun bind(classes: ClassesFragmentCardModel) {
-        class_number.text = classes.class_number
+    fun bind(data: ClassesItem) {
+        binding.recyclerData = data
+        binding.executePendingBindings()
     }
 
 }

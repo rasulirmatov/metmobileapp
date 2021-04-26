@@ -11,14 +11,14 @@ import com.example.metproject.models.HomeSliderModel
 import com.squareup.picasso.Picasso
 
 
-class HomeSliderAdapter(private  val homeSlides: List<HomeSliderModel>)
-    :RecyclerView.Adapter<HomeSliderAdapter.HomeSliderViewHolder>(){
+class HomeSliderAdapter(private val homeSlides: List<HomeSliderModel>) :
+    RecyclerView.Adapter<HomeSliderAdapter.HomeSliderViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeSliderViewHolder {
-        return  HomeSliderViewHolder(
+        return HomeSliderViewHolder(
             LayoutInflater.from(parent.context).inflate(
                 R.layout.home_slider_item,
-                parent,false
+                parent, false
             )
         )
     }
@@ -31,13 +31,13 @@ class HomeSliderAdapter(private  val homeSlides: List<HomeSliderModel>)
         holder.bind(homeSlides[position])
     }
 
-    inner class HomeSliderViewHolder(private val view: View) : RecyclerView.ViewHolder(view){
+    inner class HomeSliderViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
         private val textTitle = view.findViewById<TextView>(R.id.slider_header_text)
         private val textDescription = view.findViewById<TextView>(R.id.slider_body_text)
         private val ImageIcon = view.findViewById<ImageView>(R.id.slider_image)
 
-        fun bind(homeSlide: HomeSliderModel){
+        fun bind(homeSlide: HomeSliderModel) {
             textTitle.text = homeSlide.title
             textDescription.text = homeSlide.description
             Picasso.with(view.context)

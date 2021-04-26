@@ -36,6 +36,7 @@ class PdfViewerFragment : BaseFragment() {
     @SuppressLint("SetJavaScriptEnabled")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        showProgressDialog()
         binding.pdfviewerToolbar.setNavigationIcon(R.drawable.ic_icon_go_to_back)
         binding.pdfviewerToolbar.setNavigationOnClickListener(View.OnClickListener {
             requireActivity().onBackPressed()
@@ -43,20 +44,15 @@ class PdfViewerFragment : BaseFragment() {
         binding.pdfViewer.webViewClient = WebViewClient()
         binding.pdfViewer.settings.displayZoomControls = false
         binding.pdfViewer.settings.builtInZoomControls = false
+        binding.pdfViewer.clearCache(true)
         binding.pdfViewer.webViewClient = object : WebViewClient() {
             override fun onPageStarted(view: WebView, url: String, favicon: Bitmap?) {
                 super.onPageStarted(view, url, favicon)
-                showProgressDialog()
+//                showProgressDialog()
             }
-
-                override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
-                view.loadUrl(url)
-                hideProgressDialog()
-                return true
-            }
-
             override fun onPageFinished(view: WebView, url: String) {
-                var url = "javascript:(function() {"+"document.querySelector(\".ndfHFb-c4YZDc-Wrql6b\").remove();})()"
+                val url =
+                    "javascript:(function() {" + "document.querySelector(\".ndfHFb-c4YZDc-Wrql6b\").remove();})()"
                 pdf_viewer.loadUrl(url)
                 hideProgressDialog()
             }

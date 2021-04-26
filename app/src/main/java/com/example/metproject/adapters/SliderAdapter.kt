@@ -14,7 +14,8 @@ import com.example.metproject.models.SliderModel
 import com.smarteist.autoimageslider.SliderViewAdapter
 
 
-class SliderAdapter(private val context: Context) : SliderViewAdapter<SliderAdapter.SliderAdapterVH>() {
+class SliderAdapter(private val context: Context) :
+    SliderViewAdapter<SliderAdapter.SliderAdapterVH>() {
     private var mSliderItems: MutableList<SliderModel> = ArrayList()
 
     fun renewItems(sliderItems: MutableList<SliderModel>) {

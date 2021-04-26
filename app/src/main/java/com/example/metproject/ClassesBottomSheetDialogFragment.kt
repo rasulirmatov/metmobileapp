@@ -1,33 +1,42 @@
 package com.example.metproject
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.metproject.adapters.ClassesFragmentBottomSheetDialogCardAdapter
-//import com.example.metproject.adapters.SubjectsFragmentBottomSheetDialogCardAdapter
-import com.example.metproject.adapters.eminem
 import com.example.metproject.databinding.FragmentClassesBottomSheetDialogBinding
-//import com.example.metproject.databinding.FragmentSuBottomSheetDialogBinding
-import com.example.metproject.databinding.FragmentSubjectsBottomSheetDialogBinding
-import com.example.metproject.models.ClassesFragmentCardModel
-//import com.example.metproject.models.SubjectsFragmentCardModel
+import com.example.metproject.models.response.ResponseClassesBySubject
+import com.example.metproject.utils.SuccessResponse
+import com.example.metproject.viewModels.ClassesFragmentBottomSheetDialogViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+
 
 class ClassesBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
     private lateinit var binding: FragmentClassesBottomSheetDialogBinding
 
-    private val listCards = mutableListOf<ClassesFragmentCardModel>()
+    private lateinit var recyclerViewAdapter: ClassesFragmentBottomSheetDialogCardAdapter
 
-    private lateinit var adapter: ClassesFragmentBottomSheetDialogCardAdapter
-
+    private val viewModel: ClassesFragmentBottomSheetDialogViewModel by lazy {
+        ViewModelProviders.of(this).get(ClassesFragmentBottomSheetDialogViewModel()::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,8 +50,9 @@ class ClassesBottomSheetDialogFragment : BottomSheetDialogFragment() {
         )
         dataBinding.lifecycleOwner = this
         binding = dataBinding
+        binding.setVariable(BR.viewModel, viewModel)
+        binding.executePendingBindings()
         setHasOptionsMenu(true)
-        listCards.clear()
         return dataBinding.root
     }
 
@@ -54,43 +64,66 @@ class ClassesBottomSheetDialogFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = ClassesFragmentBottomSheetDialogCardAdapter(requireParentFragment())
-        val llm = GridLayoutManager(this.context,2)
-        binding.rvBottomsheet.layoutManager = llm
-        binding.rvBottomsheet.adapter = adapter
-        fillListCards()
-        adapter.set(listCards)
+        val gridLayoutManager = GridLayoutManager(this.context, 2)
+        binding.rvBottomsheet.layoutManager = gridLayoutManager
 
-        Toast.makeText(requireContext(), eminem.toString(), Toast.LENGTH_LONG).show()
+        Log.i("ArgumentBundle", arguments?.get("subject_id").toString())
 
-    }
-
-    private fun fillListCards() {
-//        listCards.add(
-//            ClassesFragmentCardModel(
-//                1,
-//                "1"
-//            )
-//        )
-//        listCards.add(
-//            ClassesFragmentCardModel(
-//                2,
-//                "2"
-//            )
-//        )
-        var i = 1
-        while (i <= 11) {
-            listCards.add(
-                ClassesFragmentCardModel(
-                    i,
-                    i.toString()
-                )
-            )
-            i++
+        if (isNetworkAvailable()) {
+            makeApiCall(arguments?.get("subject_id").toString())
+        } else {
+            binding.resultEmptyLayout.visibility = VISIBLE
+            binding.progressBar.visibility = GONE
         }
 
+//        binding.animationView.setOnClickListener{
+//            parentFragment?.findNavController()?.navigate(R.id.action_classesBottomSheetDialogFragment_to_themeFragmentList)
+//        }
 
 
     }
 
+    private fun makeApiCall(subjects_id: String?): ClassesFragmentBottomSheetDialogViewModel {
+        viewModel.getRecyclerListDataObserver()
+            .observe(viewLifecycleOwner, Observer<ResponseClassesBySubject> {
+                binding.progressBar.visibility = GONE
+                if (it != null) {
+                    //update the adapter
+                    if (it.status == "400" || it.data.isNullOrEmpty()) {
+                        binding.resultEmptyLayout.visibility = VISIBLE
+                    } else {
+                        recyclerViewAdapter = ClassesFragmentBottomSheetDialogCardAdapter {
+                            itemClick(it)
+                        }
+                        recyclerViewAdapter.setDataList(it.data.toMutableList())
+                        binding.rvBottomsheet.adapter = recyclerViewAdapter
+                        recyclerViewAdapter.notifyDataSetChanged()
+                        binding.rvBottomsheet.visibility = VISIBLE
+                    }
+                } else {
+                    binding.resultEmptyLayout.visibility = VISIBLE
+                }
+            })
+        viewModel.makeAPICall(subjects_id, requireContext())
+        return viewModel
+    }
+
+    fun isNetworkAvailable(): Boolean {
+        val connectivityManager = requireActivity().getSystemService(Context.CONNECTIVITY_SERVICE)
+        return if (connectivityManager is ConnectivityManager) {
+            val networkInfo: NetworkInfo? = connectivityManager.activeNetworkInfo
+            networkInfo?.isConnected ?: false
+        } else false
+    }
+
+    private fun itemClick(class_id: String) {
+        val bundle = Bundle()
+        bundle.putString("selected_subject", arguments?.get("subject_id").toString())
+        bundle.putString("selected_class", class_id)
+        parentFragment?.findNavController()
+            ?.navigate(R.id.action_classesBottomSheetDialogFragment_to_themeFragmentList, bundle)
+    }
+
+
 }
+

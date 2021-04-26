@@ -27,10 +27,9 @@ import com.smarteist.autoimageslider.SliderView
 
 
 class MainFragment : Fragment() {
+
     private lateinit var binding: FragmentMainBinding
     private var pressedTime: Long = 0
-
-
     private lateinit var adapter: MainFragmentRecomendationAdapter
     private var RecomendationList = mutableListOf<MainFragmentRecomendationModel>()
 
@@ -173,15 +172,15 @@ class MainFragment : Fragment() {
         }
         sliderAdapter = SliderAdapter(requireContext())
         renewItems(binding.imageSlider)
-        binding.imageSlider.setSliderAdapter(sliderAdapter);
-        binding.imageSlider.setIndicatorAnimation(IndicatorAnimationType.WORM); //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
-        binding.imageSlider.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
-        binding.imageSlider.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH);
-        binding.imageSlider.setIndicatorSelectedColor(Color.WHITE);
-        binding.imageSlider.setIndicatorUnselectedColor(Color.GRAY);
-        binding.imageSlider.setScrollTimeInSec(3);
-        binding.imageSlider.setAutoCycle(true);
-        binding.imageSlider.startAutoCycle();
+        binding.imageSlider.setSliderAdapter(sliderAdapter)
+        binding.imageSlider.setIndicatorAnimation(IndicatorAnimationType.WORM) //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
+        binding.imageSlider.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION)
+        binding.imageSlider.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH)
+        binding.imageSlider.setIndicatorSelectedColor(Color.WHITE)
+        binding.imageSlider.setIndicatorUnselectedColor(Color.GRAY)
+        binding.imageSlider.setScrollTimeInSec(5)
+        binding.imageSlider.setAutoCycle(true)
+        binding.imageSlider.startAutoCycle()
 
         binding.imageSlider.setOnIndicatorClickListener(DrawController.ClickListener {
             Log.i(

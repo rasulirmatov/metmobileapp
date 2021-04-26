@@ -4,56 +4,57 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
+import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.metproject.R
-import com.example.metproject.models.SubjectsFragmentCardModel
-import com.example.metproject.viewHolder.SubjectsFragmentCardViewHolder
+import com.example.metproject.models.response.Classes
+import com.example.metproject.models.response.ClassesItem
+import com.example.metproject.models.response.Subjects
+import com.example.metproject.utils.SuccessResponse
+import com.example.metproject.viewHolder.ClassesFragmentBottomSheetDialogCardViewHolder
+import com.example.metproject.viewHolder.ClassesFragmentCardViewHolder
+import com.example.metproject.viewHolder.SubjectsFragmentBottomSheetDialogCardViewHolder
 
-var eminem = "emineme"
 
-class SubjectsFragmentBottomSheetDialogCardAdapter(val parentFragment: Fragment) : RecyclerView.Adapter<SubjectsFragmentCardViewHolder>() {
+class SubjectsFragmentBottomSheetDialogCardAdapter(var itemClick: (subject_id: String) -> Unit) :
+    RecyclerView.Adapter<SubjectsFragmentBottomSheetDialogCardViewHolder>() {
 
-    private val listSubjects = mutableListOf<SubjectsFragmentCardModel>()
+
+    var listSubjects = mutableListOf<Subjects>()
+
+    fun setDataList(data: MutableList<Subjects>) {
+        this.listSubjects = data
+    }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): SubjectsFragmentCardViewHolder {
+    ): SubjectsFragmentBottomSheetDialogCardViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.fragment_subjects_card_item, parent, false)
-        return SubjectsFragmentCardViewHolder(view)
+        val binding =
+            com.example.metproject.databinding.FragmentSubjectsBottomSheetDialogCardItemBinding.inflate(
+                view,
+                parent,
+                false
+            )
+        return SubjectsFragmentBottomSheetDialogCardViewHolder(binding)
     }
 
     override fun getItemCount(): Int = listSubjects.size
 
-    override fun onBindViewHolder(holder: SubjectsFragmentCardViewHolder, position: Int) {
+    override fun onBindViewHolder(
+        holder: SubjectsFragmentBottomSheetDialogCardViewHolder,
+        position: Int
+    ) {
 
         holder.itemView.setOnClickListener {
-
-            Toast.makeText(
-                holder.subject_name.context,
-                listSubjects[position].subject_id.toString(),
-                Toast.LENGTH_SHORT
-            ).show()
-
-            eminem = "Rasul"
-
-            Log.d("itemData" ,listSubjects[position].subject_id.toString())
-
-            parentFragment.findNavController().navigate(R.id.action_subjectsBottomSheetDialogFragment_to_themeFragmentList)
-
+            itemClick.invoke(listSubjects[position].id.toString())
         }
 
         holder.bind(listSubjects[position])
+
     }
 
-    fun set(list: MutableList<SubjectsFragmentCardModel>) {
-        this.listSubjects.clear()
-        this.listSubjects.addAll(list)
-        notifyDataSetChanged()
-    }
 
 }
