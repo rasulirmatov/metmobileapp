@@ -41,6 +41,7 @@ class PdfViewerFragment : BaseFragment() {
         binding.pdfviewerToolbar.setNavigationOnClickListener(View.OnClickListener {
             requireActivity().onBackPressed()
         })
+
         binding.pdfViewer.webViewClient = WebViewClient()
         binding.pdfViewer.settings.displayZoomControls = false
         binding.pdfViewer.settings.builtInZoomControls = false
@@ -73,7 +74,8 @@ class PdfViewerFragment : BaseFragment() {
 
         }
         binding.pdfViewer.settings.javaScriptEnabled = true
-        binding.pdfViewer.loadUrl("https://docs.google.com/gview?embedded=true&url=https://mindorks.s3.ap-south-1.amazonaws.com/courses/MindOrks_Android_Online_Professional_Course-Syllabus.pdf")
+        showToast(arguments?.getString("pdf_src").toString())
+        binding.pdfViewer.loadUrl(arguments?.getString("pdf_src").toString())
     }
 
 }

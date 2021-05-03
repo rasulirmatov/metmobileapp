@@ -81,7 +81,7 @@ class IntroSliderFragment : Fragment() {
         if (!preferences.getBoolean(pref_show_intro, true)) {
             view?.let {
                 Navigation.findNavController(it)
-                    .navigate(R.id.action_introSliderFragment_to_signInFragment)
+                    .navigate(R.id.action_introSliderFragment_to_home)
             }
         }
 

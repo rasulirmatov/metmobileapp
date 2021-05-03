@@ -20,7 +20,10 @@ import kotlinx.android.synthetic.main.fragment_splash_screen.*
 class SplashScreenFragment : Fragment() {
 
     lateinit var preferences: SharedPreferences
+
     val pref_show_sign_in = "Sign_In"
+
+    val pref_show_intro = "Intro"
 
 
     override fun onCreateView(
@@ -45,10 +48,12 @@ class SplashScreenFragment : Fragment() {
 //        requireActivity().window.decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 //        requireActivity().window.statusBarColor = ContextCompat.getColor(requireContext(),R.color.white);// set status background white
 
+//        preferences =
+//            this.requireActivity().getSharedPreferences("SignIn", Context.MODE_PRIVATE)
         preferences =
-            this.requireActivity().getSharedPreferences("SignIn", Context.MODE_PRIVATE)
+            this.requireActivity().getSharedPreferences("IntroSlider", Context.MODE_PRIVATE)
 
-        if (!preferences.getBoolean(pref_show_sign_in, true)) {
+        if (!preferences.getBoolean(pref_show_intro, true)) {
             Handler().postDelayed({
                 findNavController()
                     .navigate(

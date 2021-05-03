@@ -62,10 +62,15 @@ class ClassesFragment : BaseFragment() {
         return dataBinding.root
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        hideProgressDialog()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        showProgressDialog()
+//        showProgressDialog()
 
         binding.classesToolbar.setNavigationIcon(R.drawable.ic_icon_go_to_back)
         binding.classesToolbar.setNavigationOnClickListener(View.OnClickListener {
@@ -91,6 +96,7 @@ class ClassesFragment : BaseFragment() {
 
     fun checkNetworkandLoadData() {
         if (isNetworkAvailable()) {
+            showProgressDialog()
             makeApiCall()
             binding.networkProblemLayout.visibility = GONE
         } else {
@@ -106,6 +112,7 @@ class ClassesFragment : BaseFragment() {
     fun makeApiCall(): ClassesFragmentViewModel {
         viewModel.getRecyclerListDataObserver()
             .observe(viewLifecycleOwner, Observer<ResponseClassesModel> {
+                hideProgressDialog()
                 swiperefresh.isRefreshing = false
                 if (it != null) {
                     //update the adapter

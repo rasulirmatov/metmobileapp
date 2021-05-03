@@ -7,6 +7,10 @@ import android.net.NetworkInfo
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.metproject.utils.CustomProgressDialog
+import org.jsoup.Jsoup
+
+
+
 
 
 open class BaseFragment : Fragment() {
@@ -55,6 +59,12 @@ open class BaseFragment : Fragment() {
             networkInfo?.isConnected ?: false
         } else false
     }
+
+    open fun removeHtmlTags(html: String?): String? {
+        return Jsoup.parse(html).text()
+    }
+
+
 
 
 }

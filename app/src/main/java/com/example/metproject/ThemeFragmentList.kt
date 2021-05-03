@@ -59,12 +59,17 @@ class ThemeFragmentList : BaseFragment() {
 
         val llm = LinearLayoutManager(this.context)
         binding.rvThemes.layoutManager = llm
-        binding.rvThemes.addItemDecoration(DividerItemDecoration(binding.rvThemes.context,DividerItemDecoration.VERTICAL))
+        binding.rvThemes.addItemDecoration(
+            DividerItemDecoration(
+                binding.rvThemes.context,
+                DividerItemDecoration.VERTICAL
+            )
+        )
 
 
         binding.themesToolbar.setNavigationIcon(R.drawable.ic_icon_go_to_back)
         binding.themesToolbar.setNavigationOnClickListener(View.OnClickListener {
-                requireActivity().onBackPressed()
+            requireActivity().onBackPressed()
         })
 
         checkNetworkandLoadData()
@@ -74,7 +79,6 @@ class ThemeFragmentList : BaseFragment() {
             binding.networkProblemLayout.visibility = View.GONE
             checkNetworkandLoadData()
         }
-
 
 
     }
@@ -98,11 +102,25 @@ class ThemeFragmentList : BaseFragment() {
             .observe(viewLifecycleOwner, Observer<ResponseThemesModel> {
 //                swiperefresh.isRefreshing = false
                 if (it != null) {
-                    //update the adapter
-                    Log.i("ThemeListResponse",it.data.toString())
-                    viewModel.setAdapterData(it.data.themes.toMutableList())
-                    hideProgressDialog()
-                    binding.rvContainer.visibility = View.VISIBLE
+                    if (it.status == "400") {
+                        showProgressDialog()
+                        binding.rvContainer.visibility = View.GONE
+                        binding.connectivityTextMessage.text = "Корҳои техники дар система :("
+                        binding.animationView.setAnimation(R.raw.anim_technical_problem)
+                        binding.networkProblemLayout.visibility = View.VISIBLE
+                        hideProgressDialog()
+                    } else if (it.data == null || it.data.themes.isEmpty()) {
+                        binding.resultEmptyLayout.visibility = View.VISIBLE
+                        binding.rvContainer.visibility = View.GONE
+                        binding.networkProblemLayout.visibility = View.GONE
+                        hideProgressDialog()
+                    } else {
+                        viewModel.setAdapterData(it.data.themes.toMutableList())
+                        binding.classValue.text = it.data.sinf.classX
+                        binding.subjectName.text = it.data.subject.name
+                        hideProgressDialog()
+                        binding.rvContainer.visibility = View.VISIBLE
+                    }
                 } else {
                     showProgressDialog()
                     binding.rvContainer.visibility = View.GONE
@@ -112,7 +130,11 @@ class ThemeFragmentList : BaseFragment() {
                     hideProgressDialog()
                 }
             })
-        viewModel.makeAPICall(arguments?.get("selected_class").toString(), arguments?.get("selected_subject").toString(),requireContext())
+        viewModel.makeAPICall(
+            arguments?.get("selected_class").toString(),
+            arguments?.get("selected_subject").toString(),
+            requireContext()
+        )
         return viewModel
     }
 

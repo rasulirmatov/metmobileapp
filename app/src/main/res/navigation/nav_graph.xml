@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/subjects">
+    app:startDestination="@id/splashScreenFragment">
 
     <fragment
         android:id="@+id/splashScreenFragment"
@@ -40,6 +40,9 @@
             app:popUpTo="@id/splashScreenFragment"
             app:popUpToInclusive ="true"
             />
+        <action
+            android:id="@+id/action_introSliderFragment_to_home"
+            app:destination="@id/home" />
     </fragment>
 
     <fragment
@@ -74,6 +77,9 @@
         <action
             android:id="@+id/action_termsofAgreementFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_termsofAgreementFragment_to_home"
+            app:destination="@id/home" />
     </dialog>
     <fragment
         android:id="@+id/signUpFragment"
@@ -195,6 +201,9 @@
         <action
             android:id="@+id/action_themeDetailFragment_to_pdfViewerFragment"
             app:destination="@id/pdfViewerFragment" />
+        <action
+            android:id="@+id/action_themeDetailFragment_to_exerciseFragment"
+            app:destination="@id/exerciseFragment" />
     </fragment>
 
     <fragment
@@ -202,5 +211,10 @@
         android:name="com.example.metproject.PdfViewerFragment"
         android:label="fragment_pdf_viewer"
         tools:layout="@layout/fragment_pdf_viewer" />
+    <fragment
+        android:id="@+id/exerciseFragment"
+        android:name="com.example.metproject.ExerciseFragment"
+        android:label="fragment_exercise"
+        tools:layout="@layout/fragment_exercise" />
 
 </navigation>

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.metproject.R
@@ -16,6 +17,7 @@ import com.example.metproject.models.response.Themes
 import com.example.metproject.viewHolder.ClassesFragmentCardViewHolder
 import com.example.metproject.viewHolder.SubjectsFragmentCardViewHolder
 import com.example.metproject.viewHolder.ThemeFragmentListViewHolder
+import org.jsoup.Jsoup
 import kotlin.properties.Delegates
 
 class ThemeFragmentListAdapter : RecyclerView.Adapter<ThemeFragmentListViewHolder>() {
@@ -45,13 +47,11 @@ class ThemeFragmentListAdapter : RecyclerView.Adapter<ThemeFragmentListViewHolde
         var flag = true
         holder.itemView.setOnClickListener {
 
-//            Toast.makeText(
-//                holder.theme_number.context,
-//                listThemes[position].theme_id.toString(),
-//                Toast.LENGTH_SHORT
-//            ).show()
+            val bundle = bundleOf("theme_id" to listThemes[position].id.toString())
 
             Log.d("itemData", listThemes[position].id.toString())
+            holder.binding.themeDescriptionTextView.text =
+                removeHtmlTags(holder.binding.themeDescriptionTextView.text as String?)
 
             if (flag) {
                 holder.binding.themeDescriptionTextView.visibility = View.VISIBLE
@@ -79,13 +79,17 @@ class ThemeFragmentListAdapter : RecyclerView.Adapter<ThemeFragmentListViewHolde
             }
             holder.binding.btnDetail.setOnClickListener {
                 Navigation.findNavController(it)
-                    .navigate(R.id.action_themeFragmentList_to_themeDetailFragment)
+                    .navigate(R.id.action_themeFragmentList_to_themeDetailFragment, bundle)
             }
 
         }
 
         holder.bind(listThemes[position])
 
+    }
+
+    fun removeHtmlTags(html: String?): String? {
+        return Jsoup.parse(html).text()
     }
 
 

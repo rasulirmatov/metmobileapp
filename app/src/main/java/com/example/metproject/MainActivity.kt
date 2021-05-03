@@ -5,6 +5,8 @@ import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.os.Bundle
 import android.os.Handler
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -14,7 +16,9 @@ import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -70,58 +74,77 @@ class MainActivity : AppCompatActivity() {
 
             when (item.itemId) {
                 R.id.home -> {
-//                    Toast.makeText(applicationContext, "Home", Toast.LENGTH_SHORT).show()
-//                    findNavController(R.id.myNavHostFragment).popBackStack()
-                    findNavController(R.id.myNavHostFragment).popBackStack(R.id.classes, true)
-                    findNavController(R.id.myNavHostFragment).popBackStack(R.id.home, true)
-                    findNavController(R.id.myNavHostFragment).popBackStack(R.id.subjects, true)
-                    findNavController(R.id.myNavHostFragment)
-                        .navigate(
-                            R.id.home,
-                            null,
-                            NavOptions.Builder()
-                                .setPopUpTo(
-                                    R.id.splashScreenFragment,
-                                    true
-                                ).build()
-                        )
+                    if (bottomNavigationView.getMenu()
+                            .findItem(bottomNavigationView.getSelectedItemId()).title != "Асоси"
+                    ) {
+                        findNavController(R.id.myNavHostFragment).popBackStack(R.id.classes, true)
+                        findNavController(R.id.myNavHostFragment).popBackStack(R.id.home, true)
+                        findNavController(R.id.myNavHostFragment).popBackStack(R.id.subjects, true)
+                        findNavController(R.id.myNavHostFragment)
+                            .navigate(
+                                R.id.home,
+                                null,
+                                NavOptions.Builder()
+                                    .setPopUpTo(
+                                        R.id.splashScreenFragment,
+                                        true
+                                    ).build()
+                            )
+                    }
+
+
                 }
                 R.id.subjects -> {
-//                    Toast.makeText(applicationContext, "Subjects", Toast.LENGTH_SHORT).show()
-//                    findNavController(R.id.myNavHostFragment).popBackStack()
-                    findNavController(R.id.myNavHostFragment).popBackStack(R.id.subjects, true)
-                    findNavController(R.id.myNavHostFragment).popBackStack(R.id.classes, true)
-                    findNavController(R.id.myNavHostFragment)
-                        .navigate(
-                            R.id.subjects,
-                            null,
-                            NavOptions.Builder()
-                                .setPopUpTo(
-                                    R.id.myNavHostFragment,
-                                    true
-                                ).build()
-                        )
+                    if (bottomNavigationView.getMenu()
+                            .findItem(bottomNavigationView.getSelectedItemId()).title != "Фанҳо"
+                    ) {
+                        findNavController(R.id.myNavHostFragment).popBackStack(R.id.subjects, true)
+                        findNavController(R.id.myNavHostFragment).popBackStack(R.id.classes, true)
+                        findNavController(R.id.myNavHostFragment)
+                            .navigate(
+                                R.id.subjects,
+                                null,
+                                NavOptions.Builder()
+                                    .setPopUpTo(
+                                        R.id.myNavHostFragment,
+                                        true
+                                    ).build()
+                            )
+                    }
                 }
                 R.id.classes -> {
-//                    Toast.makeText(applicationContext, "Classes", Toast.LENGTH_SHORT).show()
-//                    findNavController(R.id.myNavHostFragment).popBackStack()
-                    findNavController(R.id.myNavHostFragment).popBackStack(R.id.classes, true)
-                    findNavController(R.id.myNavHostFragment).popBackStack(R.id.subjects, true)
-                    findNavController(R.id.myNavHostFragment)
-                        .navigate(
-                            R.id.classes,
-                            null,
-                            NavOptions.Builder()
-                                .setPopUpTo(
-                                    R.id.splashScreenFragment,
-                                    true
-                                ).build()
-                        )
+                    if (bottomNavigationView.getMenu()
+                            .findItem(bottomNavigationView.getSelectedItemId()).title != "Синфҳо"
+                    ) {
+                        findNavController(R.id.myNavHostFragment).popBackStack(R.id.classes, true)
+                        findNavController(R.id.myNavHostFragment).popBackStack(R.id.subjects, true)
+                        findNavController(R.id.myNavHostFragment)
+                            .navigate(
+                                R.id.classes,
+                                null,
+                                NavOptions.Builder()
+                                    .setPopUpTo(
+                                        R.id.splashScreenFragment,
+                                        true
+                                    ).build()
+                            )
+                    }
                 }
             }
             true
         }
 
+    }
+
+    private fun getSelectedItem(bottomNavigationView: BottomNavigationView): Int {
+        val menu: Menu = bottomNavigationView.menu
+        for (i in 0 until bottomNavigationView.menu.size()) {
+            val menuItem: MenuItem = menu.getItem(i)
+            if (menuItem.isChecked()) {
+                return menuItem.getItemId()
+            }
+        }
+        return 0
     }
 
     private fun bottomNavigationHandler(duration: Long = 0L) {
@@ -144,6 +167,7 @@ class MainActivity : AppCompatActivity() {
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
     }
+
 
 
 

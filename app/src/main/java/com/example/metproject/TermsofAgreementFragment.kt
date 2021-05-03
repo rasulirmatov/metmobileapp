@@ -47,9 +47,7 @@ class TermsofAgreementFragment : BottomSheetDialogFragment() {
                 editor.apply()
                 if (!preferences.getBoolean(pref_show_intro, true)) {
                     view.let {
-                        requireParentFragment().findNavController().navigate(R.id.action_termsofAgreementFragment_to_signInFragment)
-                //                        Navigation.findNavController()
-                //                            .navigate(R.id.action_termsofAgreementFragment_to_signInFragment)
+                        requireParentFragment().findNavController().navigate(R.id.action_termsofAgreementFragment_to_home)
                     }
                 }
             }else{

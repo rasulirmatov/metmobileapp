@@ -10,21 +10,19 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.core.view.ViewCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.metproject.adapters.ClassesFragmentBottomSheetDialogCardAdapter
 import com.example.metproject.databinding.FragmentClassesBottomSheetDialogBinding
 import com.example.metproject.models.response.ResponseClassesBySubject
-import com.example.metproject.utils.SuccessResponse
 import com.example.metproject.viewModels.ClassesFragmentBottomSheetDialogViewModel
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 
@@ -37,6 +35,8 @@ class ClassesBottomSheetDialogFragment : BottomSheetDialogFragment() {
     private val viewModel: ClassesFragmentBottomSheetDialogViewModel by lazy {
         ViewModelProviders.of(this).get(ClassesFragmentBottomSheetDialogViewModel()::class.java)
     }
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,11 +58,20 @@ class ClassesBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setStyle(DialogFragment.STYLE_NO_FRAME, R.style.CustomBottomSheetDialogTheme)
+//        setStyle(DialogFragment.STYLE_NO_FRAME, R.style.CustomBottomSheetDialogTheme)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+//        val offsetFromTop = 200
+//        (dialog as? BottomSheetDialog)?.behavior?.apply {
+//            isFitToContents = true
+//            setExpandedOffset(offsetFromTop)
+//            isDraggable = true
+//            state = BottomSheetBehavior.STATE_DRAGGING
+//        }
+
 
         val gridLayoutManager = GridLayoutManager(this.context, 2)
         binding.rvBottomsheet.layoutManager = gridLayoutManager

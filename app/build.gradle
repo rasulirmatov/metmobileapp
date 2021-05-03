@@ -38,6 +38,7 @@ android {
 
     repositories {
         maven { url "https://jitpack.io" }
+        maven { url "http://jcenter.bintray.com" }
     }
 
 }
@@ -124,5 +125,12 @@ dependencies {
 
     // Animation View Lottie
     implementation "com.airbnb.android:lottie:3.4.0"
+
+    //Jsoup
+    implementation 'org.jsoup:jsoup:1.13.1'
+
+    //PdfViewer
+    implementation 'com.github.afreakyelf:Pdf-Viewer:1.0.7'
+
 
 }

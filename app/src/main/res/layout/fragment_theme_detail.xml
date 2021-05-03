@@ -44,7 +44,7 @@
                         android:marqueeRepeatLimit="marquee_forever"
                         android:scrollHorizontally="true"
                         android:singleLine="true"
-                        android:text="Мавзуи 1. Синфи 1. мавзӮdfkjvdfjkgfdgjfkgjdkgjbfkgjbfgjkfjgbfkgbbfgjkkgb"
+                        android:text=""
                         android:textAllCaps="true"
                         android:textColor="@color/primary"
                         android:textSize="18sp"
@@ -60,6 +60,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/exoplayerViewContainer"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="280dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -106,8 +107,10 @@
 
 
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/components_container"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:visibility="gone"
             android:fillViewport="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -322,6 +325,81 @@
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/network_problem_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/animationView"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/anim_no_internet" />
+
+                <TextView
+                    android:id="@+id/connectivity_text_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Пайвастшавӣ бо интернет гум!"
+                    android:textColor="@color/greyText"
+                    android:textSize="18sp"
+                    />
+
+                <Button
+                    android:id="@+id/btn_reload"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:text="Такрор"
+                    />
+
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/result_empty_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+            >
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animationView2"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/anim_empty" />
+
+        </LinearLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
