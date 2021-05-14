@@ -21,33 +21,33 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.metproject.adapters.ClassesFragmentBottomSheetDialogCardAdapter
+import com.example.metproject.adapters.OlympiadSubjectsFragmentAdapter
 import com.example.metproject.adapters.SubjectsFragmentBottomSheetDialogCardAdapter
 //import com.example.metproject.adapters.SubjectsFragmentBottomSheetDialogCardAdapter
 import com.example.metproject.databinding.FragmentClassesBottomSheetDialogBinding
+import com.example.metproject.databinding.FragmentOlympiadSubjectsBinding
 //import com.example.metproject.databinding.FragmentSuBottomSheetDialogBinding
 import com.example.metproject.databinding.FragmentSubjectsBottomSheetDialogBinding
-import com.example.metproject.models.response.ClassesItem
-import com.example.metproject.models.response.ResponseClassesBySubject
-import com.example.metproject.models.response.ResponseClassesModel
-import com.example.metproject.models.response.ResponseSubjectsByClass
+import com.example.metproject.models.response.*
 import com.example.metproject.utils.SuccessResponse
 import com.example.metproject.viewModels.ClassesFragmentBottomSheetDialogViewModel
 import com.example.metproject.viewModels.ClassesFragmentViewModel
+import com.example.metproject.viewModels.OlympiadSubjectsFragmentViewModel
 import com.example.metproject.viewModels.SubjectsFragmentBottomSheetDialogViewModel
 //import com.example.metproject.models.ClassesFragmentCardModel
 //import com.example.metproject.models.SubjectsFragmentCardModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.fragment_classes.*
 
-class SubjectsBottomSheetDialogFragment : BottomSheetDialogFragment() {
+class OlympiadSubjectsFragment : BottomSheetDialogFragment() {
 
-    private lateinit var binding: FragmentSubjectsBottomSheetDialogBinding
+    private lateinit var binding: FragmentOlympiadSubjectsBinding
 
-    private val viewModel: SubjectsFragmentBottomSheetDialogViewModel by lazy {
-        ViewModelProviders.of(this).get(SubjectsFragmentBottomSheetDialogViewModel::class.java)
+    private val viewModel: OlympiadSubjectsFragmentViewModel by lazy {
+        ViewModelProviders.of(this).get(OlympiadSubjectsFragmentViewModel::class.java)
     }
 
-    private lateinit var recyclerViewAdapter: SubjectsFragmentBottomSheetDialogCardAdapter
+    private lateinit var recyclerViewAdapter: OlympiadSubjectsFragmentAdapter
 
 
 
@@ -55,9 +55,9 @@ class SubjectsBottomSheetDialogFragment : BottomSheetDialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val dataBinding = DataBindingUtil.inflate<FragmentSubjectsBottomSheetDialogBinding>(
+        val dataBinding = DataBindingUtil.inflate<FragmentOlympiadSubjectsBinding>(
             inflater,
-            R.layout.fragment_subjects_bottom_sheet_dialog,
+            R.layout.fragment_olympiad_subjects,
             container,
             false
         )
@@ -92,17 +92,17 @@ class SubjectsBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
     }
 
-    private fun makeApiCall(class_id: String?): SubjectsFragmentBottomSheetDialogViewModel {
+    private fun makeApiCall(class_id: String?): OlympiadSubjectsFragmentViewModel {
         viewModel.getRecyclerListDataObserver()
-            .observe(viewLifecycleOwner, Observer<ResponseSubjectsByClass> { it ->
+            .observe(viewLifecycleOwner, Observer<ResponseOlympicSubjects> {
                 binding.progressBar.visibility = GONE
                 if (it != null) {
                     //update the adapter
-                    if (it.status == "400" || it.data.isNullOrEmpty()){
+                    if (it.status == 400 || it.data.isNullOrEmpty()){
                         binding.resultEmptyLayout.visibility = VISIBLE
                     }else {
-                        recyclerViewAdapter = SubjectsFragmentBottomSheetDialogCardAdapter {
-                            itemClick(it)
+                        recyclerViewAdapter = OlympiadSubjectsFragmentAdapter { s: String, s1: String ->
+                            itemClick(s,s1)
                         }
                         recyclerViewAdapter.setDataList(it.data.toMutableList())
                         binding.rvBottomsheet.adapter = recyclerViewAdapter
@@ -125,12 +125,14 @@ class SubjectsBottomSheetDialogFragment : BottomSheetDialogFragment() {
         } else false
     }
 
-    private fun itemClick(subject_id: String) {
+    private fun itemClick(subject_id: String,subject_name: String) {
         val bundle = Bundle()
         bundle.putString("selected_class", arguments?.get("class_id").toString())
         bundle.putString("selected_subject", subject_id)
+        bundle.putString("class_number", arguments?.get("class_number").toString())
+        bundle.putString("subject_name", subject_name)
         parentFragment?.findNavController()
-            ?.navigate(R.id.action_subjectsBottomSheetDialogFragment_to_themeFragmentList, bundle)
+            ?.navigate(R.id.action_olympiadSubjectsFragment_to_olympiadDetailFragment, bundle)
     }
 
 }

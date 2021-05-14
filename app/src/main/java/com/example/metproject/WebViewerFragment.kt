@@ -3,6 +3,7 @@ package com.example.metproject
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,20 +11,22 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import com.example.metproject.databinding.FragmentPdfViewerBinding
-import kotlinx.android.synthetic.main.fragment_pdf_viewer.*
+import com.example.metproject.databinding.FragmentWebViewerBinding
+import kotlinx.android.synthetic.main.fragment_web_viewer.*
+import java.lang.Error
+import java.lang.Exception
 
 
-class PdfViewerFragment : BaseFragment() {
-    private lateinit var binding: FragmentPdfViewerBinding
+class WebViewerFragment : BaseFragment() {
+    private lateinit var binding: FragmentWebViewerBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val dataBinding = DataBindingUtil.inflate<FragmentPdfViewerBinding>(
+        val dataBinding = DataBindingUtil.inflate<FragmentWebViewerBinding>(
             inflater,
-            R.layout.fragment_pdf_viewer,
+            R.layout.fragment_web_viewer,
             container,
             false
         )
@@ -37,25 +40,34 @@ class PdfViewerFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         showProgressDialog()
-        binding.pdfviewerToolbar.setNavigationIcon(R.drawable.ic_icon_go_to_back)
-        binding.pdfviewerToolbar.setNavigationOnClickListener(View.OnClickListener {
+        binding.webViewerToolbar.setNavigationIcon(R.drawable.ic_icon_go_to_back)
+        binding.webViewerToolbar.setNavigationOnClickListener(View.OnClickListener {
             requireActivity().onBackPressed()
         })
+        binding.titleName.text = arguments?.getString("title").toString()
 
-        binding.pdfViewer.webViewClient = WebViewClient()
-        binding.pdfViewer.settings.displayZoomControls = false
-        binding.pdfViewer.settings.builtInZoomControls = false
-        binding.pdfViewer.clearCache(true)
-        binding.pdfViewer.webViewClient = object : WebViewClient() {
+        binding.webViewer.webViewClient = WebViewClient()
+        binding.webViewer.settings.displayZoomControls = false
+        binding.webViewer.settings.builtInZoomControls = false
+        binding.webViewer.clearCache(false)
+        binding.webViewer.webViewClient = object : WebViewClient() {
             override fun onPageStarted(view: WebView, url: String, favicon: Bitmap?) {
                 super.onPageStarted(view, url, favicon)
-//                showProgressDialog()
+                showProgressDialog()
             }
+
             override fun onPageFinished(view: WebView, url: String) {
                 val url =
-                    "javascript:(function() {" + "document.querySelector(\".ndfHFb-c4YZDc-Wrql6b\").remove();})()"
-                pdf_viewer.loadUrl(url)
+                    "javascript:(function() {" + "document.querySelector(\".header-four\").remove();" +
+                            "" +
+                            "document.getElementById(\"footer-part\").remove();})()"
+                try {
+                    web_viewer.loadUrl(url)
+                }catch (e: Exception){
+                    Log.e("Error on WebVieweFragment", e.message)
+                }
                 hideProgressDialog()
+                web_viewer.visibility = View.VISIBLE
             }
 
             override fun onReceivedError(
@@ -73,9 +85,8 @@ class PdfViewerFragment : BaseFragment() {
             }
 
         }
-        binding.pdfViewer.settings.javaScriptEnabled = true
-        showToast(arguments?.getString("pdf_src").toString())
-        binding.pdfViewer.loadUrl(arguments?.getString("pdf_src").toString())
+        binding.webViewer.settings.javaScriptEnabled = true
+        binding.webViewer.loadUrl(arguments?.getString("url").toString())
     }
 
 }

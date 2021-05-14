@@ -13,6 +13,14 @@
         android:id="@+id/classes"
         android:icon="@drawable/ic_classroom"
         android:title="Синфҳо" />
+    <item
+        android:id="@+id/olympiad"
+        android:icon="@drawable/ic_olympiada"
+        android:title="Олимпиада" />
+    <item
+        android:id="@+id/mmt"
+        android:icon="@drawable/ic_mmt"
+        android:title="ММТ" />
 
 </menu>
 

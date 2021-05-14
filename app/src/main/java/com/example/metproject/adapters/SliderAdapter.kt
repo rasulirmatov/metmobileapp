@@ -1,7 +1,12 @@
 package com.example.metproject.adapters
 
 import android.content.Context
+import android.content.Intent
+import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.net.Uri
+import android.util.Base64
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,14 +16,16 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.metproject.R
 import com.example.metproject.models.SliderModel
+import com.example.metproject.models.response.Slide
+import com.example.metproject.utils.Constants
 import com.smarteist.autoimageslider.SliderViewAdapter
 
 
 class SliderAdapter(private val context: Context) :
     SliderViewAdapter<SliderAdapter.SliderAdapterVH>() {
-    private var mSliderItems: MutableList<SliderModel> = ArrayList()
+    private var mSliderItems: MutableList<Slide> = ArrayList()
 
-    fun renewItems(sliderItems: MutableList<SliderModel>) {
+    fun setSliderItems(sliderItems: MutableList<Slide>) {
         mSliderItems = sliderItems
         notifyDataSetChanged()
     }
@@ -28,7 +35,7 @@ class SliderAdapter(private val context: Context) :
         notifyDataSetChanged()
     }
 
-    fun addItem(sliderItem: SliderModel) {
+    fun addItem(sliderItem: Slide) {
         mSliderItems.add(sliderItem)
         notifyDataSetChanged()
     }
@@ -43,18 +50,23 @@ class SliderAdapter(private val context: Context) :
         viewHolder: SliderAdapterVH,
         position: Int
     ) {
-        val sliderItem: SliderModel = mSliderItems[position]
+        val sliderItem: Slide = mSliderItems[position]
+        viewHolder.textViewTitle.setText(sliderItem.title)
         viewHolder.textViewDescription.setText(sliderItem.description)
-        viewHolder.textViewDescription.textSize = 16f
-        viewHolder.textViewDescription.setTextColor(Color.WHITE)
+        val imageBytes = Base64.decode(sliderItem.imgSrc.replace("data:image/jpeg;base64,",""), Base64.DEFAULT)
+        val decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+        Log.i("BitMapimage",sliderItem.imgSrc)
+
         Glide.with(viewHolder.itemView)
-            .load(sliderItem.imageUrl)
+            .load(decodedImage)
+            .placeholder(R.drawable.ic_place_holder)
             .fitCenter()
             .into(viewHolder.imageViewBackground)
+
         viewHolder.itemView1.setOnClickListener(View.OnClickListener {
-            Toast.makeText(context, "This is item in position $position", Toast.LENGTH_SHORT)
-                .show()
+            context?.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(Constants.slider_url+sliderItem.url)))
         })
+
     }
 
     override fun getCount(): Int {
@@ -66,6 +78,7 @@ class SliderAdapter(private val context: Context) :
         var itemView1: View
         var imageViewBackground: ImageView
         var imageGifContainer: ImageView
+        var textViewTitle: TextView
         var textViewDescription: TextView
 
         init {
@@ -73,7 +86,8 @@ class SliderAdapter(private val context: Context) :
                 itemView.findViewById(R.id.iv_auto_image_slider)
             imageGifContainer =
                 itemView.findViewById(R.id.iv_gif_container)
-            textViewDescription = itemView.findViewById(R.id.tv_auto_image_slider)
+            textViewTitle = itemView.findViewById(R.id.slider_title)
+            textViewDescription = itemView.findViewById(R.id.slider_description)
             this.itemView1 = itemView
         }
     }

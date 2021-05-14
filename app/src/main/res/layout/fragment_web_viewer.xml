@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".PdfViewerFragment">
+    tools:context=".WebViewerFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/all_items_container"
@@ -20,13 +20,13 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/pdfviewer_toolbar"
+                android:id="@+id/web_viewer_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/background">
 
                 <TextView
-                    android:id="@+id/theme_name"
+                    android:id="@+id/title_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -35,7 +35,7 @@
                     android:marqueeRepeatLimit="marquee_forever"
                     android:scrollHorizontally="true"
                     android:singleLine="true"
-                    android:text="Конспект"
+                    android:text=""
                     android:textAllCaps="true"
                     android:textColor="@color/primary"
                     android:textSize="18sp"
@@ -49,10 +49,11 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <WebView
-            android:id="@+id/pdf_viewer"
+            android:id="@+id/web_viewer"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:scrollbars="none"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

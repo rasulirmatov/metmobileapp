@@ -37,457 +37,229 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/all_items_container"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/topAppBar">
 
-            <androidx.core.widget.NestedScrollView
-                android:id="@+id/nestedScrollView"
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swiperefresh"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/background"
+                android:layout_height="match_parent">
+
+                <androidx.core.widget.NestedScrollView
+                    android:id="@+id/nestedScrollView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/background"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="top"
+                        android:orientation="vertical">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="10dp"
+                            app:cardCornerRadius="5dp">
+
+                            <com.smarteist.autoimageslider.SliderView
+                                android:id="@+id/imageSlider"
+                                android:layout_width="match_parent"
+                                android:layout_height="200dp"
+                                android:visibility="visible"
+                                app:sliderAnimationDuration="700"
+                                app:sliderAutoCycleDirection="back_and_forth"
+                                app:sliderAutoCycleEnabled="true"
+                                android:background="@drawable/ic_place_holder"
+                                app:sliderIndicatorAnimationDuration="600"
+                                app:sliderIndicatorEnabled="true"
+                                app:sliderIndicatorGravity="center|bottom"
+                                app:sliderIndicatorMargin="15dp"
+                                app:sliderIndicatorOrientation="horizontal"
+                                app:sliderIndicatorPadding="3dp"
+                                app:sliderIndicatorRadius="1.8dp"
+                                app:sliderIndicatorSelectedColor="#5A5A5A"
+                                app:sliderIndicatorUnselectedColor="#FFF"
+                                app:sliderScrollTimeInSec="4"
+                                app:sliderStartAutoCycle="true" />
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/popular_subjects_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/backgroundDarker"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:id="@+id/textView3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginTop="15dp"
+                                android:text="Фанҳои машҳуртарин"
+                                android:textAllCaps="true"
+                                android:textColor="@color/dark_grey_text_color"
+                                android:textSize="12sp"
+                                app:layout_constraintBottom_toBottomOf="@+id/textView4"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/textView4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginEnd="15dp"
+                                android:fontFamily="@font/roboto_medium"
+                                android:text="Зиёдтар"
+                                android:textAllCaps="true"
+                                android:textColor="@color/primary"
+                                android:textSize="12sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rv"
+                                android:layout_width="match_parent"
+                                android:layout_height="170dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="15dp"
+                                android:orientation="horizontal"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_second_slider"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="5dp"
+                            android:overScrollMode="never"
+                            android:paddingTop="15dp"
+                            android:paddingEnd="5dp"
+                            android:paddingBottom="5dp" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/news_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/backgroundDarker"
+                            android:visibility="visible">
+
+                            <TextView
+                                android:id="@+id/news_label"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginTop="15dp"
+                                android:text="Навгониҳо"
+                                android:textAllCaps="true"
+                                android:textColor="@color/dark_grey_text_color"
+                                android:textSize="12sp"
+                                app:layout_constraintBottom_toBottomOf="@+id/show_more"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/show_more"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginEnd="15dp"
+                                android:fontFamily="@font/roboto_medium"
+                                android:text="Зиёдтар"
+                                android:textAllCaps="true"
+                                android:textColor="@color/primary"
+                                android:textSize="12sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rv_news"
+                                android:layout_width="match_parent"
+                                android:layout_height="258dp"
+                                android:layout_marginStart="3dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="15dp"
+                                android:orientation="horizontal"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/news_label" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </LinearLayout>
+
+                </androidx.core.widget.NestedScrollView>
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/network_problem_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/topAppBar">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="top"
-                    android:orientation="vertical">
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/animationView"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/anim_no_internet" />
+
+                <TextView
+                    android:id="@+id/connectivity_text_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Пайвастшавӣ бо интернет гум!"
+                    android:textColor="@color/greyText"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/btn_reload"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:text="Такрор" />
+
+            </LinearLayout>
 
-                    <androidx.cardview.widget.CardView
-                        app:cardCornerRadius="5dp"
-                        android:layout_margin="5dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <com.smarteist.autoimageslider.SliderView
-                            android:id="@+id/imageSlider"
-                            android:layout_width="match_parent"
-                            android:layout_height="200dp"
-                            app:sliderAnimationDuration="700"
-                            app:sliderAutoCycleDirection="back_and_forth"
-                            app:sliderAutoCycleEnabled="true"
-                            app:sliderIndicatorAnimationDuration="600"
-                            app:sliderIndicatorGravity="left|bottom"
-                            app:sliderIndicatorMargin="15dp"
-                            app:sliderIndicatorOrientation="horizontal"
-                            app:sliderIndicatorPadding="3dp"
-                            app:sliderIndicatorRadius="1.8dp"
-                            app:sliderIndicatorSelectedColor="#5A5A5A"
-                            app:sliderIndicatorUnselectedColor="#FFF"
-                            app:sliderScrollTimeInSec="4"
-                            app:sliderStartAutoCycle="true"/>
-
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/backgroundDarker">
-
-                        <TextView
-                            android:id="@+id/textView3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="15dp"
-                            android:text="Фанҳои машҳуртарин"
-                            android:textAllCaps="true"
-                            android:textColor="@color/dark_grey_text_color"
-                            android:textSize="12sp"
-                            app:layout_constraintBottom_toBottomOf="@+id/textView4"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/textView4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginEnd="15dp"
-                            android:fontFamily="@font/roboto_medium"
-                            android:text="Зиёдтар"
-                            android:textAllCaps="true"
-                            android:textColor="@color/primary"
-                            android:textSize="12sp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/rv"
-                            android:layout_width="match_parent"
-                            android:layout_height="170dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="15dp"
-                            android:orientation="horizontal"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:orientation="horizontal"
-                            android:weightSum="2">
-
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/btn_videoCources"
-                                android:layout_width="200dp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center|top"
-                                android:layout_marginStart="10dp"
-                                android:layout_marginTop="20dp"
-                                android:layout_marginEnd="5dp"
-                                android:layout_weight="1"
-                                android:clickable="true"
-                                android:focusable="true"
-                                android:foreground="?android:attr/selectableItemBackground"
-                                app:cardCornerRadius="8dp"
-                                app:cardElevation="0dp"
-                                app:cardPreventCornerOverlap="true">
-
-                                <androidx.constraintlayout.widget.ConstraintLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:background="@color/blueCard">
-
-                                    <ImageView
-                                        android:id="@+id/module_image"
-                                        android:layout_width="40dp"
-                                        android:layout_height="40dp"
-                                        android:layout_marginStart="15dp"
-                                        android:layout_marginTop="20dp"
-                                        android:src="@drawable/ic_videocources"
-                                        app:layout_constraintStart_toStartOf="parent"
-                                        app:layout_constraintTop_toTopOf="parent" />
-
-                                    <TextView
-                                        android:id="@+id/module_text"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="10dp"
-                                        android:layout_marginBottom="20dp"
-                                        android:fontFamily="@font/roboto_medium"
-                                        android:text="Видео Дарсҳо"
-                                        android:textColor="@color/white"
-                                        android:textSize="15sp"
-                                        app:layout_constraintBottom_toBottomOf="parent"
-                                        app:layout_constraintStart_toStartOf="@+id/module_image"
-                                        app:layout_constraintTop_toBottomOf="@+id/module_image" />
-
-                                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                            </androidx.cardview.widget.CardView>
-
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/btn_books"
-                                android:layout_width="200dp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center|top"
-                                android:layout_marginStart="5dp"
-                                android:layout_marginTop="20dp"
-                                android:layout_marginEnd="10dp"
-                                android:layout_weight="1"
-                                android:clickable="true"
-                                android:focusable="true"
-                                android:foreground="?android:attr/selectableItemBackground"
-                                app:cardCornerRadius="8dp"
-                                app:cardElevation="0dp"
-                                app:cardPreventCornerOverlap="true">
-
-                                <androidx.constraintlayout.widget.ConstraintLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:background="@color/greenCard">
-
-                                    <ImageView
-                                        android:id="@+id/imageView3"
-                                        android:layout_width="40dp"
-                                        android:layout_height="40dp"
-                                        android:layout_marginStart="15dp"
-                                        android:layout_marginTop="20dp"
-                                        android:src="@drawable/ic_bookspng"
-                                        app:layout_constraintStart_toStartOf="parent"
-                                        app:layout_constraintTop_toTopOf="parent" />
-
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="10dp"
-                                        android:layout_marginBottom="20dp"
-                                        android:fontFamily="@font/roboto_medium"
-                                        android:text="Китобҳои Бадеӣ"
-                                        android:textColor="@color/white"
-                                        android:textSize="15sp"
-                                        app:layout_constraintBottom_toBottomOf="parent"
-                                        app:layout_constraintStart_toStartOf="@+id/imageView3"
-                                        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
-
-
-                                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                            </androidx.cardview.widget.CardView>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:orientation="horizontal"
-                            android:weightSum="2">
-
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/btn_olympiad"
-                                android:layout_width="200dp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center|top"
-                                android:layout_marginStart="10dp"
-                                android:layout_marginTop="20dp"
-                                android:layout_marginEnd="5dp"
-                                android:layout_weight="1"
-                                android:clickable="true"
-                                android:focusable="true"
-                                android:foreground="?android:attr/selectableItemBackground"
-                                app:cardCornerRadius="8dp"
-                                app:cardElevation="0dp"
-                                app:cardPreventCornerOverlap="true">
-
-                                <androidx.constraintlayout.widget.ConstraintLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:background="@color/pinkCard">
-
-                                    <ImageView
-                                        android:id="@+id/imageView8"
-                                        android:layout_width="40dp"
-                                        android:layout_height="40dp"
-                                        android:layout_marginStart="15dp"
-                                        android:layout_marginTop="20dp"
-                                        android:src="@drawable/ic_olympia"
-                                        app:layout_constraintStart_toStartOf="parent"
-                                        app:layout_constraintTop_toTopOf="parent" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="10dp"
-                                        android:layout_marginBottom="20dp"
-                                        android:fontFamily="@font/roboto_medium"
-                                        android:text="Олимпиада"
-                                        android:textColor="@color/white"
-                                        android:textSize="15sp"
-                                        app:layout_constraintBottom_toBottomOf="parent"
-                                        app:layout_constraintStart_toStartOf="@+id/imageView8"
-                                        app:layout_constraintTop_toBottomOf="@+id/imageView8" />
-
-                                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                            </androidx.cardview.widget.CardView>
-
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/btn_webresource"
-                                android:layout_width="200dp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center|top"
-                                android:layout_marginStart="5dp"
-                                android:layout_marginTop="20dp"
-                                android:layout_marginEnd="10dp"
-                                android:layout_weight="1"
-                                android:clickable="true"
-                                android:focusable="true"
-                                android:foreground="?android:attr/selectableItemBackground"
-                                app:cardCornerRadius="8dp"
-                                app:cardElevation="0dp"
-                                app:cardPreventCornerOverlap="true">
-
-                                <androidx.constraintlayout.widget.ConstraintLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:background="@color/blueCard">
-
-                                    <ImageView
-
-                                        android:id="@+id/imageView9"
-                                        android:layout_width="40dp"
-                                        android:layout_height="40dp"
-                                        android:layout_marginStart="15dp"
-                                        android:layout_marginTop="20dp"
-                                        android:src="@drawable/ic_webresources"
-                                        app:layout_constraintStart_toStartOf="parent"
-                                        app:layout_constraintTop_toTopOf="parent" />
-
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="10dp"
-                                        android:layout_marginBottom="20dp"
-                                        android:fontFamily="@font/roboto_medium"
-                                        android:text="Интернет захираҳо"
-                                        android:textColor="@color/white"
-                                        android:textSize="15sp"
-                                        app:layout_constraintBottom_toBottomOf="parent"
-                                        app:layout_constraintStart_toStartOf="@+id/imageView9"
-                                        app:layout_constraintTop_toBottomOf="@+id/imageView9" />
-
-
-                                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                            </androidx.cardview.widget.CardView>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:orientation="horizontal"
-                            android:weightSum="2">
-
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/btn_sulh_lessons"
-                                android:layout_width="200dp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center|top"
-                                android:layout_marginStart="10dp"
-                                android:layout_marginTop="20dp"
-                                android:layout_marginEnd="5dp"
-                                android:layout_marginBottom="20dp"
-                                android:layout_weight="1"
-                                android:clickable="true"
-                                android:focusable="true"
-                                android:foreground="?android:attr/selectableItemBackground"
-                                app:cardCornerRadius="8dp"
-                                app:cardElevation="0dp"
-                                app:cardPreventCornerOverlap="true">
-
-                                <androidx.constraintlayout.widget.ConstraintLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:background="@color/greenCard">
-
-                                    <ImageView
-                                        android:id="@+id/imageView10"
-                                        android:layout_width="40dp"
-                                        android:layout_height="40dp"
-                                        android:layout_marginStart="15dp"
-                                        android:layout_marginTop="20dp"
-                                        android:src="@drawable/ic_sulh_lessons"
-                                        app:layout_constraintStart_toStartOf="parent"
-                                        app:layout_constraintTop_toTopOf="parent" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="10dp"
-                                        android:layout_marginBottom="20dp"
-                                        android:fontFamily="@font/roboto_medium"
-                                        android:text="Дарси сулҳ"
-                                        android:textColor="@color/white"
-                                        android:textSize="15sp"
-                                        app:layout_constraintBottom_toBottomOf="parent"
-                                        app:layout_constraintStart_toStartOf="@+id/imageView10"
-                                        app:layout_constraintTop_toBottomOf="@+id/imageView10" />
-
-                                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                            </androidx.cardview.widget.CardView>
-
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/btn_mmt"
-                                android:layout_width="200dp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center|top"
-                                android:layout_marginStart="5dp"
-                                android:layout_marginTop="20dp"
-                                android:layout_marginEnd="10dp"
-                                android:layout_marginBottom="20dp"
-                                android:layout_weight="1"
-                                android:clickable="true"
-                                android:focusable="true"
-                                android:foreground="?android:attr/selectableItemBackground"
-                                app:cardCornerRadius="8dp"
-                                app:cardElevation="0dp"
-                                app:cardPreventCornerOverlap="true">
-
-                                <androidx.constraintlayout.widget.ConstraintLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:background="@color/pinkCard">
-
-                                    <ImageView
-                                        android:id="@+id/imageView11"
-                                        android:layout_width="40dp"
-                                        android:layout_height="40dp"
-                                        android:layout_marginStart="15dp"
-                                        android:layout_marginTop="20dp"
-                                        android:src="@drawable/ic_mmt_test"
-                                        app:layout_constraintStart_toStartOf="parent"
-                                        app:layout_constraintTop_toTopOf="parent" />
-
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="10dp"
-                                        android:layout_marginBottom="20dp"
-                                        android:fontFamily="@font/roboto_medium"
-                                        android:text="Маркази тестӣ"
-                                        android:textColor="@color/white"
-                                        android:textSize="15sp"
-                                        app:layout_constraintBottom_toBottomOf="parent"
-                                        app:layout_constraintStart_toStartOf="@+id/imageView11"
-                                        app:layout_constraintTop_toBottomOf="@+id/imageView11" />
-
-
-                                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                            </androidx.cardview.widget.CardView>
-
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-
-
-                    <!--                    <androidx.recyclerview.widget.RecyclerView-->
-                    <!--                        android:id="@+id/rv_modules"-->
-                    <!--                        android:layout_width="match_parent"-->
-                    <!--                        android:layout_height="170dp"-->
-                    <!--                        android:layout_marginBottom="15dp"-->
-                    <!--                        android:background="@color/background"-->
-                    <!--                        android:orientation="horizontal"-->
-                    <!--                        app:layout_constraintBottom_toBottomOf="parent"-->
-                    <!--                        app:layout_constraintEnd_toEndOf="parent"-->
-                    <!--                        app:layout_constraintStart_toStartOf="parent"-->
-                    <!--                        app:layout_constraintTop_toBottomOf="@+id/textView3" />-->
-
-
-                </LinearLayout>
-
-            </androidx.core.widget.NestedScrollView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -496,234 +268,338 @@
 
 </layout>
 
-
     <!--<LinearLayout-->
     <!--android:layout_width="match_parent"-->
     <!--android:layout_height="wrap_content"-->
-    <!--android:orientation="horizontal"-->
-    <!--android:weightSum="2">-->
+    <!--android:orientation="vertical">-->
 
-    <!--<androidx.cardview.widget.CardView-->
-    <!--    android:id="@+id/btn_olympiad"-->
-    <!--    android:layout_width="200dp"-->
-    <!--    android:layout_height="200dp"-->
-    <!--    android:layout_gravity="center|top"-->
-    <!--    android:layout_margin="3dp"-->
-    <!--    android:layout_weight="1"-->
-    <!--    android:clickable="true"-->
-    <!--    android:focusable="true"-->
-    <!--    android:foreground="?android:attr/selectableItemBackground"-->
-    <!--    app:cardCornerRadius="8dp"-->
-    <!--    app:cardElevation="5dp"-->
-    <!--    app:cardPreventCornerOverlap="true"-->
-    <!--    app:cardUseCompatPadding="true"-->
-    <!--    app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--    app:layout_constraintEnd_toEndOf="parent"-->
-    <!--    app:layout_constraintStart_toStartOf="parent"-->
-    <!--    app:layout_constraintTop_toTopOf="parent">-->
+    <!--<LinearLayout-->
+    <!--    android:layout_width="match_parent"-->
+    <!--    android:layout_height="wrap_content"-->
+    <!--    android:gravity="center"-->
+    <!--    android:orientation="horizontal"-->
+    <!--    android:weightSum="2">-->
 
-    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        android:background="@color/pinkCard">-->
+    <!--    <androidx.cardview.widget.CardView-->
+    <!--        android:id="@+id/btn_videoCources"-->
+    <!--        android:layout_width="200dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_gravity="center|top"-->
+    <!--        android:layout_marginStart="10dp"-->
+    <!--        android:layout_marginTop="20dp"-->
+    <!--        android:layout_marginEnd="5dp"-->
+    <!--        android:layout_weight="1"-->
+    <!--        android:clickable="true"-->
+    <!--        android:focusable="true"-->
+    <!--        android:foreground="?android:attr/selectableItemBackground"-->
+    <!--        app:cardCornerRadius="8dp"-->
+    <!--        app:cardElevation="0dp"-->
+    <!--        app:cardPreventCornerOverlap="true">-->
 
-    <!--        <ImageView-->
-    <!--            android:id="@+id/imageView2"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_marginTop="20dp"-->
-    <!--            android:src="@drawable/ic_olympia"-->
-    <!--            app:layout_constraintEnd_toEndOf="parent"-->
-    <!--            app:layout_constraintStart_toStartOf="parent"-->
-    <!--            app:layout_constraintTop_toTopOf="parent" />-->
+    <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            android:background="@color/blueCard">-->
+
+    <!--            <ImageView-->
+    <!--                android:id="@+id/module_image"-->
+    <!--                android:layout_width="40dp"-->
+    <!--                android:layout_height="40dp"-->
+    <!--                android:layout_marginStart="15dp"-->
+    <!--                android:layout_marginTop="20dp"-->
+    <!--                android:src="@drawable/ic_videocources"-->
+    <!--                app:layout_constraintStart_toStartOf="parent"-->
+    <!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--            <TextView-->
+    <!--                android:id="@+id/module_text"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_marginTop="10dp"-->
+    <!--                android:layout_marginBottom="20dp"-->
+    <!--                android:fontFamily="@font/roboto_medium"-->
+    <!--                android:text="Видео Дарсҳо"-->
+    <!--                android:textColor="@color/white"-->
+    <!--                android:textSize="15sp"-->
+    <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--                app:layout_constraintStart_toStartOf="@+id/module_image"-->
+    <!--                app:layout_constraintTop_toBottomOf="@+id/module_image" />-->
+
+    <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+    <!--    </androidx.cardview.widget.CardView>-->
+
+    <!--    <androidx.cardview.widget.CardView-->
+    <!--        android:id="@+id/btn_books"-->
+    <!--        android:layout_width="200dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_gravity="center|top"-->
+    <!--        android:layout_marginStart="5dp"-->
+    <!--        android:layout_marginTop="20dp"-->
+    <!--        android:layout_marginEnd="10dp"-->
+    <!--        android:layout_weight="1"-->
+    <!--        android:clickable="true"-->
+    <!--        android:focusable="true"-->
+    <!--        android:foreground="?android:attr/selectableItemBackground"-->
+    <!--        app:cardCornerRadius="8dp"-->
+    <!--        app:cardElevation="0dp"-->
+    <!--        app:cardPreventCornerOverlap="true">-->
+
+    <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            android:background="@color/greenCard">-->
+
+    <!--            <ImageView-->
+    <!--                android:id="@+id/imageView3"-->
+    <!--                android:layout_width="40dp"-->
+    <!--                android:layout_height="40dp"-->
+    <!--                android:layout_marginStart="15dp"-->
+    <!--                android:layout_marginTop="20dp"-->
+    <!--                android:src="@drawable/ic_bookspng"-->
+    <!--                app:layout_constraintStart_toStartOf="parent"-->
+    <!--                app:layout_constraintTop_toTopOf="parent" />-->
 
 
-    <!--        <TextView-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:text="Олимпиада"-->
-    <!--            android:textColor="@android:color/white"-->
-    <!--            android:textSize="17sp"-->
-    <!--            android:textStyle="bold"-->
-    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--            app:layout_constraintEnd_toEndOf="parent"-->
-    <!--            app:layout_constraintStart_toStartOf="parent"-->
-    <!--            app:layout_constraintTop_toBottomOf="@+id/imageView2" />-->
+    <!--            <TextView-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_marginTop="10dp"-->
+    <!--                android:layout_marginBottom="20dp"-->
+    <!--                android:fontFamily="@font/roboto_medium"-->
+    <!--                android:text="Китобҳои Бадеӣ"-->
+    <!--                android:textColor="@color/white"-->
+    <!--                android:textSize="15sp"-->
+    <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--                app:layout_constraintStart_toStartOf="@+id/imageView3"-->
+    <!--                app:layout_constraintTop_toBottomOf="@+id/imageView3" />-->
 
 
-    <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+    <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
 
 
-    <!--</androidx.cardview.widget.CardView>-->
-
-    <!--<androidx.cardview.widget.CardView-->
-    <!--    android:id="@+id/btn_webresources"-->
-    <!--    android:layout_width="200dp"-->
-    <!--    android:layout_height="200dp"-->
-    <!--    android:layout_gravity="center|top"-->
-    <!--    android:layout_margin="3dp"-->
-    <!--    android:layout_weight="1"-->
-    <!--    android:clickable="true"-->
-    <!--    android:focusable="true"-->
-    <!--    android:foreground="?android:attr/selectableItemBackground"-->
-    <!--    app:cardCornerRadius="8dp"-->
-    <!--    app:cardElevation="5dp"-->
-    <!--    app:cardPreventCornerOverlap="true"-->
-    <!--    app:cardUseCompatPadding="true"-->
-    <!--    app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--    app:layout_constraintEnd_toEndOf="parent"-->
-    <!--    app:layout_constraintStart_toStartOf="parent"-->
-    <!--    app:layout_constraintTop_toTopOf="parent">-->
-
-    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        android:background="@color/blueCard">-->
-
-    <!--        <ImageView-->
-    <!--            android:id="@+id/imageView5"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_marginTop="20dp"-->
-    <!--            android:src="@drawable/ic_webresources"-->
-    <!--            app:layout_constraintEnd_toEndOf="parent"-->
-    <!--            app:layout_constraintStart_toStartOf="parent"-->
-    <!--            app:layout_constraintTop_toTopOf="parent" />-->
-
-
-    <!--        <TextView-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:text="Инернет захирахо"-->
-    <!--            android:textColor="@android:color/white"-->
-    <!--            android:textSize="17sp"-->
-    <!--            android:textStyle="bold"-->
-    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--            app:layout_constraintEnd_toEndOf="parent"-->
-    <!--            app:layout_constraintStart_toStartOf="parent"-->
-    <!--            app:layout_constraintTop_toBottomOf="@+id/imageView5" />-->
-
-    <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-    <!--</androidx.cardview.widget.CardView>-->
+    <!--    </androidx.cardview.widget.CardView>-->
 
     <!--</LinearLayout>-->
 
     <!--<LinearLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:orientation="horizontal"-->
-    <!--android:weightSum="2">-->
+    <!--    android:layout_width="match_parent"-->
+    <!--    android:layout_height="wrap_content"-->
+    <!--    android:gravity="center"-->
+    <!--    android:orientation="horizontal"-->
+    <!--    android:weightSum="2">-->
 
-    <!--<androidx.cardview.widget.CardView-->
-    <!--    android:id="@+id/btn_sulh_lessons"-->
-    <!--    android:layout_width="200dp"-->
-    <!--    android:layout_height="200dp"-->
-    <!--    android:layout_gravity="center|top"-->
-    <!--    android:layout_margin="3dp"-->
-    <!--    android:layout_weight="1"-->
-    <!--    android:clickable="true"-->
-    <!--    android:focusable="true"-->
-    <!--    android:foreground="?android:attr/selectableItemBackground"-->
-    <!--    app:cardCornerRadius="8dp"-->
-    <!--    app:cardElevation="5dp"-->
-    <!--    app:cardPreventCornerOverlap="true"-->
-    <!--    app:cardUseCompatPadding="true"-->
-    <!--    app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--    app:layout_constraintEnd_toEndOf="parent"-->
-    <!--    app:layout_constraintStart_toStartOf="parent"-->
-    <!--    app:layout_constraintTop_toTopOf="parent">-->
+    <!--    <androidx.cardview.widget.CardView-->
+    <!--        android:id="@+id/btn_olympiad"-->
+    <!--        android:layout_width="200dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_gravity="center|top"-->
+    <!--        android:layout_marginStart="10dp"-->
+    <!--        android:layout_marginTop="20dp"-->
+    <!--        android:layout_marginEnd="5dp"-->
+    <!--        android:layout_weight="1"-->
+    <!--        android:clickable="true"-->
+    <!--        android:focusable="true"-->
+    <!--        android:foreground="?android:attr/selectableItemBackground"-->
+    <!--        app:cardCornerRadius="8dp"-->
+    <!--        app:cardElevation="0dp"-->
+    <!--        app:cardPreventCornerOverlap="true">-->
 
-    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        android:background="@color/greenCard">-->
+    <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            android:background="@color/pinkCard">-->
 
-    <!--        <ImageView-->
-    <!--            android:id="@+id/imageView7"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_marginTop="20dp"-->
-    <!--            android:src="@drawable/ic_sulh_lessons"-->
-    <!--            app:layout_constraintEnd_toEndOf="parent"-->
-    <!--            app:layout_constraintStart_toStartOf="parent"-->
-    <!--            app:layout_constraintTop_toTopOf="parent" />-->
+    <!--            <ImageView-->
+    <!--                android:id="@+id/imageView8"-->
+    <!--                android:layout_width="40dp"-->
+    <!--                android:layout_height="40dp"-->
+    <!--                android:layout_marginStart="15dp"-->
+    <!--                android:layout_marginTop="20dp"-->
+    <!--                android:src="@drawable/ic_olympia"-->
+    <!--                app:layout_constraintStart_toStartOf="parent"-->
+    <!--                app:layout_constraintTop_toTopOf="parent" />-->
 
+    <!--            <TextView-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_marginTop="10dp"-->
+    <!--                android:layout_marginBottom="20dp"-->
+    <!--                android:fontFamily="@font/roboto_medium"-->
+    <!--                android:text="Олимпиада"-->
+    <!--                android:textColor="@color/white"-->
+    <!--                android:textSize="15sp"-->
+    <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--                app:layout_constraintStart_toStartOf="@+id/imageView8"-->
+    <!--                app:layout_constraintTop_toBottomOf="@+id/imageView8" />-->
 
-    <!--        <TextView-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:text="Дарси сулҳ"-->
-    <!--            android:textColor="@android:color/white"-->
-    <!--            android:textSize="17sp"-->
-    <!--            android:textStyle="bold"-->
-    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--            app:layout_constraintEnd_toEndOf="parent"-->
-    <!--            app:layout_constraintStart_toStartOf="parent"-->
-    <!--            app:layout_constraintTop_toBottomOf="@+id/imageView7" />-->
+    <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
 
+    <!--    </androidx.cardview.widget.CardView>-->
 
-    <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+    <!--    <androidx.cardview.widget.CardView-->
+    <!--        android:id="@+id/btn_webresource"-->
+    <!--        android:layout_width="200dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_gravity="center|top"-->
+    <!--        android:layout_marginStart="5dp"-->
+    <!--        android:layout_marginTop="20dp"-->
+    <!--        android:layout_marginEnd="10dp"-->
+    <!--        android:layout_weight="1"-->
+    <!--        android:clickable="true"-->
+    <!--        android:focusable="true"-->
+    <!--        android:foreground="?android:attr/selectableItemBackground"-->
+    <!--        app:cardCornerRadius="8dp"-->
+    <!--        app:cardElevation="0dp"-->
+    <!--        app:cardPreventCornerOverlap="true">-->
 
+    <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            android:background="@color/blueCard">-->
 
-    <!--</androidx.cardview.widget.CardView>-->
+    <!--            <ImageView-->
 
-    <!--<androidx.cardview.widget.CardView-->
-    <!--    android:id="@+id/btn_mmt"-->
-    <!--    android:layout_width="200dp"-->
-    <!--    android:layout_height="200dp"-->
-    <!--    android:layout_gravity="center|top"-->
-    <!--    android:layout_margin="3dp"-->
-    <!--    android:layout_weight="1"-->
-    <!--    android:clickable="true"-->
-    <!--    android:focusable="true"-->
-    <!--    android:foreground="?android:attr/selectableItemBackground"-->
-    <!--    app:cardCornerRadius="8dp"-->
-    <!--    app:cardElevation="5dp"-->
-    <!--    app:cardPreventCornerOverlap="true"-->
-    <!--    app:cardUseCompatPadding="true"-->
-    <!--    app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--    app:layout_constraintEnd_toEndOf="parent"-->
-    <!--    app:layout_constraintStart_toStartOf="parent"-->
-    <!--    app:layout_constraintTop_toTopOf="parent">-->
-
-    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        android:background="@color/pinkCard">-->
-
-    <!--        <ImageView-->
-    <!--            android:id="@+id/imageView6"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_marginTop="20dp"-->
-    <!--            android:src="@drawable/ic_webresources"-->
-    <!--            app:layout_constraintEnd_toEndOf="parent"-->
-    <!--            app:layout_constraintStart_toStartOf="parent"-->
-    <!--            app:layout_constraintTop_toTopOf="parent" />-->
+    <!--                android:id="@+id/imageView9"-->
+    <!--                android:layout_width="40dp"-->
+    <!--                android:layout_height="40dp"-->
+    <!--                android:layout_marginStart="15dp"-->
+    <!--                android:layout_marginTop="20dp"-->
+    <!--                android:src="@drawable/ic_webresources"-->
+    <!--                app:layout_constraintStart_toStartOf="parent"-->
+    <!--                app:layout_constraintTop_toTopOf="parent" />-->
 
 
-    <!--        <TextView-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:text="ММТ"-->
-    <!--            android:textColor="@android:color/white"-->
-    <!--            android:textSize="17sp"-->
-    <!--            android:textStyle="bold"-->
-    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--            app:layout_constraintEnd_toEndOf="parent"-->
-    <!--            app:layout_constraintStart_toStartOf="parent"-->
-    <!--            app:layout_constraintTop_toBottomOf="@+id/imageView6" />-->
+    <!--            <TextView-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_marginTop="10dp"-->
+    <!--                android:layout_marginBottom="20dp"-->
+    <!--                android:fontFamily="@font/roboto_medium"-->
+    <!--                android:text="Интернет захираҳо"-->
+    <!--                android:textColor="@color/white"-->
+    <!--                android:textSize="15sp"-->
+    <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--                app:layout_constraintStart_toStartOf="@+id/imageView9"-->
+    <!--                app:layout_constraintTop_toBottomOf="@+id/imageView9" />-->
 
-    <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-    <!--</androidx.cardview.widget.CardView>-->
+    <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+
+    <!--    </androidx.cardview.widget.CardView>-->
 
     <!--</LinearLayout>-->
 
-<!--old slider-->
-<!--<androidx.viewpager2.widget.ViewPager2-->
-<!--android:id="@+id/homeSliderViewPager"-->
-<!--android:layout_width="match_parent"-->
-<!--android:layout_height="wrap_content"-->
-<!--android:overScrollMode="never" />-->
+    <!--<LinearLayout-->
+    <!--    android:layout_width="match_parent"-->
+    <!--    android:layout_height="wrap_content"-->
+    <!--    android:gravity="center"-->
+    <!--    android:orientation="horizontal"-->
+    <!--    android:weightSum="2">-->
+
+    <!--    <androidx.cardview.widget.CardView-->
+    <!--        android:id="@+id/btn_sulh_lessons"-->
+    <!--        android:layout_width="200dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_gravity="center|top"-->
+    <!--        android:layout_marginStart="10dp"-->
+    <!--        android:layout_marginTop="20dp"-->
+    <!--        android:layout_marginEnd="5dp"-->
+    <!--        android:layout_marginBottom="20dp"-->
+    <!--        android:layout_weight="1"-->
+    <!--        android:clickable="true"-->
+    <!--        android:focusable="true"-->
+    <!--        android:foreground="?android:attr/selectableItemBackground"-->
+    <!--        app:cardCornerRadius="8dp"-->
+    <!--        app:cardElevation="0dp"-->
+    <!--        app:cardPreventCornerOverlap="true">-->
+
+    <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            android:background="@color/greenCard">-->
+
+    <!--            <ImageView-->
+    <!--                android:id="@+id/imageView10"-->
+    <!--                android:layout_width="40dp"-->
+    <!--                android:layout_height="40dp"-->
+    <!--                android:layout_marginStart="15dp"-->
+    <!--                android:layout_marginTop="20dp"-->
+    <!--                android:src="@drawable/ic_sulh_lessons"-->
+    <!--                app:layout_constraintStart_toStartOf="parent"-->
+    <!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--            <TextView-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_marginTop="10dp"-->
+    <!--                android:layout_marginBottom="20dp"-->
+    <!--                android:fontFamily="@font/roboto_medium"-->
+    <!--                android:text="Дарси сулҳ"-->
+    <!--                android:textColor="@color/white"-->
+    <!--                android:textSize="15sp"-->
+    <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--                app:layout_constraintStart_toStartOf="@+id/imageView10"-->
+    <!--                app:layout_constraintTop_toBottomOf="@+id/imageView10" />-->
+
+    <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+    <!--    </androidx.cardview.widget.CardView>-->
+
+    <!--    <androidx.cardview.widget.CardView-->
+    <!--        android:id="@+id/btn_mmt"-->
+    <!--        android:layout_width="200dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_gravity="center|top"-->
+    <!--        android:layout_marginStart="5dp"-->
+    <!--        android:layout_marginTop="20dp"-->
+    <!--        android:layout_marginEnd="10dp"-->
+    <!--        android:layout_marginBottom="20dp"-->
+    <!--        android:layout_weight="1"-->
+    <!--        android:clickable="true"-->
+    <!--        android:focusable="true"-->
+    <!--        android:foreground="?android:attr/selectableItemBackground"-->
+    <!--        app:cardCornerRadius="8dp"-->
+    <!--        app:cardElevation="0dp"-->
+    <!--        app:cardPreventCornerOverlap="true">-->
+
+    <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            android:background="@color/pinkCard">-->
+
+    <!--            <ImageView-->
+    <!--                android:id="@+id/imageView11"-->
+    <!--                android:layout_width="40dp"-->
+    <!--                android:layout_height="40dp"-->
+    <!--                android:layout_marginStart="15dp"-->
+    <!--                android:layout_marginTop="20dp"-->
+    <!--                android:src="@drawable/ic_mmt_test"-->
+    <!--                app:layout_constraintStart_toStartOf="parent"-->
+    <!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+
+    <!--            <TextView-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_marginTop="10dp"-->
+    <!--                android:layout_marginBottom="20dp"-->
+    <!--                android:fontFamily="@font/roboto_medium"-->
+    <!--                android:text="Маркази тестӣ"-->
+    <!--                android:textColor="@color/white"-->
+    <!--                android:textSize="15sp"-->
+    <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--                app:layout_constraintStart_toStartOf="@+id/imageView11"-->
+    <!--                app:layout_constraintTop_toBottomOf="@+id/imageView11" />-->
+
+
+    <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+
+    <!--    </androidx.cardview.widget.CardView>-->
+
+    <!--</LinearLayout>-->
+
+
+    <!--</LinearLayout>-->

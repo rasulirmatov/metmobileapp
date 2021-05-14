@@ -139,6 +139,12 @@
             android:id="@+id/action_home_to_settingsFragment"
             app:destination="@id/settingsFragment"
             app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_home_to_newsFragment"
+            app:destination="@id/newsFragment" />
+        <action
+            android:id="@+id/action_home_to_WebViewerFragment"
+            app:destination="@id/WebViewerFragment" />
     </fragment>
 
     <fragment
@@ -159,6 +165,17 @@
             android:id="@+id/action_subjects_to_classesBottomSheetDialogFragment"
             app:destination="@id/classesBottomSheetDialogFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/olympiad"
+        android:name="com.example.metproject.OlympiadFragment"
+        android:label="fragment_olympiad"
+        tools:layout="@layout/fragment_olympiad" >
+        <action
+            android:id="@+id/action_olympiad_to_olympiadSubjectsFragment"
+            app:destination="@id/olympiadSubjectsFragment" />
+    </fragment>
+
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.metproject.SettingsFragment"
@@ -199,22 +216,47 @@
         android:name="com.example.metproject.ThemeDetailFragment"
         android:label="ThemeDetailFragment" >
         <action
-            android:id="@+id/action_themeDetailFragment_to_pdfViewerFragment"
-            app:destination="@id/pdfViewerFragment" />
-        <action
             android:id="@+id/action_themeDetailFragment_to_exerciseFragment"
             app:destination="@id/exerciseFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/pdfViewerFragment"
-        android:name="com.example.metproject.PdfViewerFragment"
+        android:id="@+id/WebViewerFragment"
+        android:name="com.example.metproject.WebViewerFragment"
         android:label="fragment_pdf_viewer"
-        tools:layout="@layout/fragment_pdf_viewer" />
+        tools:layout="@layout/fragment_web_viewer" />
     <fragment
         android:id="@+id/exerciseFragment"
         android:name="com.example.metproject.ExerciseFragment"
         android:label="fragment_exercise"
         tools:layout="@layout/fragment_exercise" />
+    <fragment
+        android:id="@+id/newsFragment"
+        android:name="com.example.metproject.NewsFragment"
+        android:label="fragment_news"
+        tools:layout="@layout/fragment_news" >
+        <action
+            android:id="@+id/action_newsFragment_to_WebViewerFragment"
+            app:destination="@id/WebViewerFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/olympiadSubjectsFragment"
+        android:name="com.example.metproject.OlympiadSubjectsFragment"
+        android:label="fragment_olympiad_subjects"
+        tools:layout="@layout/fragment_olympiad_subjects" >
+        <action
+            android:id="@+id/action_olympiadSubjectsFragment_to_olympiadDetailFragment"
+            app:destination="@id/olympiadDetailFragment" />
+    </dialog>
+    <fragment
+        android:id="@+id/olympiadDetailFragment"
+        android:name="com.example.metproject.OlympiadDetailFragment"
+        android:label="OlympiadDetailFragment"
+        tools:layout="@layout/fragment_olympiad_detail"
+        >
+        <action
+            android:id="@+id/action_olympiadDetailFragment_to_exerciseFragment"
+            app:destination="@id/exerciseFragment" />
+    </fragment>
 
 </navigation>

@@ -6,35 +6,47 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.GridView
 import android.widget.Toast
 import androidx.activity.addCallback
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.metproject.adapters.HomeSliderAdapter
-import com.example.metproject.adapters.MainFragmentRecomendationAdapter
+import com.example.metproject.adapters.MainFragmentNewsAdapter
+import com.example.metproject.adapters.SecondSliderAdapter
 import com.example.metproject.adapters.SliderAdapter
 import com.example.metproject.databinding.FragmentMainBinding
 import com.example.metproject.models.HomeSliderModel
-import com.example.metproject.models.MainFragmentRecomendationModel
-import com.example.metproject.models.SliderModel
+import com.example.metproject.models.response.*
+import com.example.metproject.utils.Constants
+import com.example.metproject.viewModels.MainFragmentViewModel
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
 import com.smarteist.autoimageslider.IndicatorView.draw.controller.DrawController
 import com.smarteist.autoimageslider.SliderAnimations
 import com.smarteist.autoimageslider.SliderView
 
 
-class MainFragment : Fragment() {
+class MainFragment : BaseFragment() {
 
     private lateinit var binding: FragmentMainBinding
     private var pressedTime: Long = 0
-    private lateinit var adapter: MainFragmentRecomendationAdapter
-    private var RecomendationList = mutableListOf<MainFragmentRecomendationModel>()
+    private lateinit var adapter: MainFragmentNewsAdapter
+    private lateinit var adapter_second_slider: SecondSliderAdapter
+    private var countLoadedComponent: Int = 0
+
+//    private var RecomendationList = mutableListOf<MainFragmentNewsModel>()
+
+    private val viewModel: MainFragmentViewModel by lazy {
+        ViewModelProviders.of(this).get(MainFragmentViewModel::class.java)
+    }
 
     private lateinit var sliderAdapter: SliderAdapter
-
 
     private val homeSliderAdapter =
         HomeSliderAdapter(
@@ -52,44 +64,15 @@ class MainFragment : Fragment() {
             )
         )
 
-    private fun FillRecomendationList() {
-        RecomendationList.add(
-            MainFragmentRecomendationModel(
-                6,
-                R.drawable.biology,
-                "Биология"
-            )
-        )
-        RecomendationList.add(
-            MainFragmentRecomendationModel(
-                2,
-                R.drawable.tarihiumumi,
-                "Таърих халқи тоҷик дар замони оянда"
-            )
-        )
-
-        RecomendationList.add(
-            MainFragmentRecomendationModel(
-                3,
-                R.drawable.zanglisi,
-                "Забони англиси"
-            )
-        )
-        RecomendationList.add(
-            MainFragmentRecomendationModel(
-                4,
-                R.drawable.znemisi,
-                "Забони немиси"
-            )
-        )
-        RecomendationList.add(
-            MainFragmentRecomendationModel(
-                14,
-                R.drawable.geography,
-                "География"
-            )
-        )
-    }
+//    private fun FillRecomendationList() {
+//        RecomendationList.add(
+//            MainFragmentNewsModel(
+//                6,
+//                R.drawable.biology,
+//                "Биология"
+//            )
+//        )
+//    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -106,10 +89,6 @@ class MainFragment : Fragment() {
             pressedTime = System.currentTimeMillis();
         }
         callback.isEnabled
-
-//        exitTransition = MaterialFadeThrough()
-//        enterTransition = MaterialFadeThrough()
-
     }
 
 
@@ -125,10 +104,7 @@ class MainFragment : Fragment() {
         )
         dataBinding.lifecycleOwner = this
         binding = dataBinding
-
-        // Clear Duplicate
-        RecomendationList.clear()
-
+//        RecomendationList.clear()
         setHasOptionsMenu(true)
         return dataBinding.root
     }
@@ -140,14 +116,12 @@ class MainFragment : Fragment() {
         // Home Slider
 //        binding.homeSliderViewPager.adapter = homeSliderAdapter
 
-
-
         // Recomendation List
         val llm = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false)
-        binding.rv.layoutManager = llm
-        FillRecomendationList()
-        adapter = MainFragmentRecomendationAdapter(RecomendationList)
-        binding.rv.adapter = adapter
+        binding.rvNews.layoutManager = llm
+
+        val glm = GridLayoutManager(requireContext(), 2)
+        binding.rvSecondSlider.layoutManager = glm
 
 
         // Main Toolbar
@@ -167,11 +141,203 @@ class MainFragment : Fragment() {
                         )
                     true
                 }
+                R.id.for_students -> {
+                    findNavController().navigate(
+                        R.id.action_home_to_WebViewerFragment,
+                        bundleForWebViewer("Ба хонанда", Constants.slider_url + "/page/ba-talaba"),
+                        NavOptions.Builder()
+                            .setPopUpTo(
+                                R.id.myNavHostFragment,
+                                true
+                            ).build()
+                    )
+                    true
+                }
+                R.id.for_school -> {
+                    findNavController().navigate(
+                        R.id.action_home_to_WebViewerFragment,
+                        bundleForWebViewer("Ба мактаб", Constants.slider_url + "/page/ba-maktab"),
+                        NavOptions.Builder()
+                            .setPopUpTo(
+                                R.id.myNavHostFragment,
+                                true
+                            ).build()
+                    )
+                    true
+                }
+                R.id.for_teachers -> {
+                    findNavController().navigate(
+                        R.id.action_home_to_WebViewerFragment,
+                        bundleForWebViewer(
+                            "Ба муаллим",
+                            Constants.slider_url + "/page/ba-muallimon"
+                        ),
+                        NavOptions.Builder()
+                            .setPopUpTo(
+                                R.id.myNavHostFragment,
+                                true
+                            ).build()
+                    )
+                    true
+                }
+                R.id.for_parents -> {
+                    findNavController().navigate(
+                        R.id.action_home_to_WebViewerFragment,
+                        bundleForWebViewer(
+                            "Ба волидайн",
+                            Constants.slider_url + "/page/ba-volidayn"
+                        ),
+                        NavOptions.Builder()
+                            .setPopUpTo(
+                                R.id.myNavHostFragment,
+                                true
+                            ).build()
+                    )
+                    true
+                }
+
                 else -> super.onOptionsItemSelected(it)
             }
         }
+
+        checkNetworkandLoadData()
+
+        binding.showMore.setOnClickListener {
+            findNavController()
+                .navigate(
+                    R.id.action_home_to_newsFragment,
+                    null,
+                    NavOptions.Builder()
+                        .setPopUpTo(
+                            R.id.myNavHostFragment,
+                            true
+                        ).build()
+                )
+        }
+
+        binding.swiperefresh.setOnRefreshListener {
+            binding.allItemsContainer.visibility = View.GONE
+            checkNetworkandLoadData()
+        }
+
+        binding.btnReload.setOnClickListener {
+            showProgressDialog()
+            binding.networkProblemLayout.visibility = View.GONE
+            checkNetworkandLoadData()
+        }
+
+    }
+
+    fun checkNetworkandLoadData() {
+        if (isNetworkAvailable()) {
+            showProgressDialog()
+            makeApiCallMainSlider()
+            makeApiCallSecondSlider()
+            makeApiCallNews()
+            binding.networkProblemLayout.visibility = View.GONE
+        } else {
+            binding.swiperefresh.isRefreshing = false
+            hideProgressDialog()
+            binding.connectivityTextMessage.text = "Пайвастшавӣ бо интернет гум!"
+            binding.animationView.setAnimation(R.raw.anim_no_internet)
+            binding.networkProblemLayout.visibility = View.VISIBLE
+            binding.allItemsContainer.visibility = View.GONE
+        }
+    }
+
+    fun makeApiCallNews(): MainFragmentViewModel {
+        viewModel.getRecyclerListDataObserver()
+            .observe(viewLifecycleOwner, Observer<ResponseNews> {
+                binding.swiperefresh.isRefreshing = false
+                if (it != null) {
+                    countLoadedComponent+=1
+                    adapter =
+                        MainFragmentNewsAdapter(
+                            it.data.toMutableList().subList(0, getNewsSize(it.data.toMutableList()))
+                        )
+                    binding.rvNews.adapter = adapter
+                    if (countLoadedComponent==3) {
+                        hideProgressDialog()
+                        binding.allItemsContainer.visibility = View.VISIBLE
+                        countLoadedComponent = 0
+                    }
+                } else {
+                    showProgressDialog()
+                    binding.allItemsContainer.visibility = View.GONE
+                    binding.connectivityTextMessage.text = "Корҳои техники дар система :("
+                    binding.animationView.setAnimation(R.raw.anim_technical_problem)
+                    binding.networkProblemLayout.visibility = View.VISIBLE
+                    hideProgressDialog()
+                }
+            })
+        viewModel.makeAPICall(requireContext())
+        return viewModel
+    }
+
+    fun makeApiCallMainSlider(): MainFragmentViewModel {
+        viewModel.getMainSliderListDataObserver()
+            .observe(viewLifecycleOwner, Observer<ResponseMainSlider> {
+                if (it != null) {
+                    countLoadedComponent+=1
+                    setSliderContent(it.data.value.slides.toMutableList())
+                    binding.imageSlider.visibility = View.VISIBLE
+                    if (countLoadedComponent==3) {
+                        hideProgressDialog()
+                        binding.allItemsContainer.visibility = View.VISIBLE
+                        countLoadedComponent = 0
+                    }
+                } else {
+                    showProgressDialog()
+                    binding.allItemsContainer.visibility = View.GONE
+                    binding.connectivityTextMessage.text = "Корҳои техники дар система :("
+                    binding.animationView.setAnimation(R.raw.anim_technical_problem)
+                    binding.networkProblemLayout.visibility = View.VISIBLE
+                    hideProgressDialog()
+                }
+            })
+        viewModel.makeAPICallMainslider(requireContext())
+        return viewModel
+    }
+
+    fun makeApiCallSecondSlider(): MainFragmentViewModel {
+        viewModel.getSecondSliderListDataObserver()
+            .observe(viewLifecycleOwner, Observer<ResponseSecondSlider> {
+                if (it != null) {
+                    countLoadedComponent+=1
+                    adapter_second_slider =
+                        SecondSliderAdapter(it.data.value.slides.toMutableList())
+                    binding.rvSecondSlider.adapter = adapter_second_slider
+                    if (countLoadedComponent==3) {
+                        hideProgressDialog()
+                        binding.allItemsContainer.visibility = View.VISIBLE
+                        countLoadedComponent = 0
+                    }
+                } else {
+                    showProgressDialog()
+                    binding.allItemsContainer.visibility = View.GONE
+                    binding.connectivityTextMessage.text = "Корҳои техники дар система :("
+                    binding.animationView.setAnimation(R.raw.anim_technical_problem)
+                    binding.networkProblemLayout.visibility = View.VISIBLE
+                    hideProgressDialog()
+                }
+            })
+        viewModel.makeAPICallSecondslider(requireContext())
+        return viewModel
+    }
+
+
+    fun getNewsSize(list: MutableList<NewsItem>): Int {
+        if (list.size < 5) {
+            return list.size
+        } else {
+            return 5
+        }
+    }
+
+    fun setSliderContent(slide: MutableList<Slide>) {
         sliderAdapter = SliderAdapter(requireContext())
-        renewItems(binding.imageSlider)
+        sliderAdapter.setSliderItems(slide)
+        sliderAdapter.notifyDataSetChanged()
         binding.imageSlider.setSliderAdapter(sliderAdapter)
         binding.imageSlider.setIndicatorAnimation(IndicatorAnimationType.WORM) //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
         binding.imageSlider.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION)
@@ -184,38 +350,10 @@ class MainFragment : Fragment() {
 
         binding.imageSlider.setOnIndicatorClickListener(DrawController.ClickListener {
             Log.i(
-                "GGG",
+                "IndicatorClickEvent",
                 "onIndicatorClicked: " + binding.imageSlider.getCurrentPagePosition()
             )
         })
-
-    }
-
-    fun renewItems(view: View?) {
-        val sliderItemList: MutableList<SliderModel> = ArrayList()
-        //dummy data
-        for (i in 0..4) {
-            val sliderItem = SliderModel()
-            sliderItem.description = "Slider Item $i"
-//            if (i % 2 == 0) {
-//                sliderItem.imageUrl = "https://images.pexels.com/photos/929778/pexels-photo-929778.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-//            } else {
-                sliderItem.imageUrl = "https://mettj.ru/front/images/slider/s-4.jpg"
-//            }
-            sliderItemList.add(sliderItem)
-        }
-        sliderAdapter.renewItems(sliderItemList)
-    }
-
-    fun removeLastItem(view: View?) {
-        if (sliderAdapter.getCount() - 1 >= 0) sliderAdapter.deleteItem(sliderAdapter.getCount() - 1)
-    }
-
-    fun addNewItem(view: View?) {
-        val sliderItem = SliderModel()
-        sliderItem.description = "Slider Item Added Manually"
-        sliderItem.imageUrl = "https://images.pexels.com/photos/929778/pexels-photo-929778.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-        sliderAdapter.addItem(sliderItem)
     }
 
 

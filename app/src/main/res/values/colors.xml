@@ -55,7 +55,8 @@
 <!--    <color name="lightblueCard">#6A7F94</color>-->
 <!--    <color name="greyCard">#EDF0F2</color>-->
 <!--    <color name="greyText">#8A8A8A</color>-->
-<!--    <color name="darkgreyText">#4F4F4F</color>-->
+    <color name="darkgreyText">#4F4F4F</color>
+    <color name="news_fragment_background">#EBEEF0</color>
 <!--    <color name="darkestgreyText">#202428</color>-->
 <!--    <color name="blueText">#687C91</color>-->
 <!--    <color name="heading">#1D2025</color>-->

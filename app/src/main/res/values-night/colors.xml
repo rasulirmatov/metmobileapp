@@ -37,5 +37,11 @@
     <color name="subjectsItemFilterColor">#BA595A5C</color>
     <color name="pinkCard">#FF6F6F</color>
 
+    <color name="darkgreyText">#4F4F4F</color>
+
+    <color name="news_fragment_background">#EBEEF0</color>
+
+
+
 
 </resources>

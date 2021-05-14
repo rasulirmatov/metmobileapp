@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.webkit.WebViewClient
 import androidx.databinding.DataBindingUtil
 import com.example.metproject.databinding.FragmentExerciseBinding
-import com.example.metproject.databinding.FragmentPdfViewerBinding
 
 class ExerciseFragment : BaseFragment() {
     private lateinit var binding: FragmentExerciseBinding

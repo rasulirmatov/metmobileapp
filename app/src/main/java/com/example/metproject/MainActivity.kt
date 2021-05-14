@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 //        window.decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//  set status text dark
 //        window.statusBarColor = ContextCompat.getColor(this,R.color.white);// set status background white
+
         appSettingPrefs = getSharedPreferences("AppSettingPrefs", Context.MODE_PRIVATE)
 //        val sharedPrefsEdit: SharedPreferences.Editor = appSettingPrefs.edit()
         val isNightModeOn: Boolean = appSettingPrefs.getBoolean("NightMode", false)
@@ -130,6 +131,25 @@ class MainActivity : AppCompatActivity() {
                             )
                     }
                 }
+                R.id.olympiad -> {
+                    if (bottomNavigationView.getMenu()
+                            .findItem(bottomNavigationView.getSelectedItemId()).title != "Олимпиада"
+                    ) {
+                        findNavController(R.id.myNavHostFragment).popBackStack(R.id.classes, true)
+                        findNavController(R.id.myNavHostFragment).popBackStack(R.id.subjects, true)
+                        findNavController(R.id.myNavHostFragment)
+                            .navigate(
+                                R.id.olympiad,
+                                null,
+                                NavOptions.Builder()
+                                    .setPopUpTo(
+                                        R.id.splashScreenFragment,
+                                        true
+                                    ).build()
+                            )
+                    }
+//                    btnNotify()
+                }
             }
             true
         }
@@ -145,6 +165,16 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return 0
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Toast.makeText(this, "Pause", Toast.LENGTH_LONG).show()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Toast.makeText(this, "Resume", Toast.LENGTH_LONG).show()
     }
 
     private fun bottomNavigationHandler(duration: Long = 0L) {
@@ -167,8 +197,5 @@ class MainActivity : AppCompatActivity() {
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
     }
-
-
-
 
 }
