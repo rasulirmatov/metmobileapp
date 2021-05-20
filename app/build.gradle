@@ -1,8 +1,10 @@
 plugins {
+//    id 'com.onesignal.androidsdk.onesignal-gradle-plugin'
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'kotlin-android-extensions'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -10,7 +12,7 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "com.example.metproject"
+        applicationId "com.app.maktabielektroni"
         minSdkVersion 24
         targetSdkVersion 29
         versionCode 1
@@ -46,9 +48,9 @@ android {
 dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.2.0'
+    implementation 'androidx.core:core-ktx:1.3.2'
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'com.google.android.material:material:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
@@ -58,8 +60,10 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.1'
 //    implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.recyclerview:recyclerview:1.2.0-beta01'
+    implementation 'com.google.firebase:firebase-messaging:22.0.0'
+    implementation 'androidx.work:work-runtime:2.5.0'
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     kapt "com.android.databinding:compiler:3.1.4"
 
@@ -75,8 +79,8 @@ dependencies {
     implementation 'com.github.smarteist:autoimageslider:1.4.0'
 
     //Material Design
-    implementation 'com.google.android.material:material:1.3.0-alpha04'
-    implementation 'androidx.mediarouter:mediarouter:1.2.0'
+    implementation 'com.google.android.material:material:1.4.0-beta01'
+    implementation 'androidx.mediarouter:mediarouter:1.2.3'
 
     //Google Pollete Library
 //    implementation 'com.android.support:palette-v7:28.0.0'
@@ -132,5 +136,14 @@ dependencies {
     //PdfViewer
     implementation 'com.github.afreakyelf:Pdf-Viewer:1.0.7'
 
+    implementation platform('com.google.firebase:firebase-bom:28.0.0')
 
+    implementation 'com.google.firebase:firebase-core:19.0.0'
+
+    implementation 'com.google.firebase:firebase-messaging-ktx'
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+
+//    implementation 'com.onesignal:OneSignal:4.3.4'
 }
+
+apply plugin: 'com.google.gms.google-services'

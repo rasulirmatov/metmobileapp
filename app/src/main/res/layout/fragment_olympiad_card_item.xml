@@ -5,7 +5,7 @@
     <data>
         <variable
             name="recyclerData"
-            type="com.example.metproject.models.response.OlympiadClass" />
+            type="com.app.maktabielektroni.models.response.OlympiadClass" />
     </data>
 
     <androidx.cardview.widget.CardView

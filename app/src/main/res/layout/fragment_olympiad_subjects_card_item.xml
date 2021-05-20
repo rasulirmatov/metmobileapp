@@ -4,7 +4,7 @@
     <data>
         <variable
             name="recyclerData"
-            type="com.example.metproject.models.response.OlympiadSubject" />
+            type="com.app.maktabielektroni.models.response.OlympiadSubject" />
     </data>
     <androidx.cardview.widget.CardView
         android:id="@+id/main_fragment_card_view"

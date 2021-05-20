@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashScreenFragment"
-        android:name="com.example.metproject.SplashScreenFragment"
+        android:name="com.app.maktabielektroni.SplashScreenFragment"
         android:label="fragment_splash_screen"
         tools:layout="@layout/fragment_splash_screen">
         <action
@@ -25,7 +25,7 @@
 
     <fragment
         android:id="@+id/introSliderFragment"
-        android:name="com.example.metproject.IntroSliderFragment"
+        android:name="com.app.maktabielektroni.IntroSliderFragment"
         android:label="fragment_intro_slider"
         tools:layout="@layout/fragment_intro_slider">
         <action
@@ -47,7 +47,7 @@
 
     <fragment
         android:id="@+id/signInFragment"
-        android:name="com.example.metproject.SignInFragment"
+        android:name="com.app.maktabielektroni.SignInFragment"
         android:label="fragment_sign_in"
         tools:layout="@layout/fragment_sign_in">
         <action
@@ -71,7 +71,7 @@
     </fragment>
     <dialog
         android:id="@+id/termsofAgreementFragment"
-        android:name="com.example.metproject.TermsofAgreementFragment"
+        android:name="com.app.maktabielektroni.TermsofAgreementFragment"
         android:label="fragment_termsof_agreement_list_dialog"
         tools:layout="@layout/fragment_termsof_agreement_dialog">
         <action
@@ -83,7 +83,7 @@
     </dialog>
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.example.metproject.SignUpFragment"
+        android:name="com.app.maktabielektroni.SignUpFragment"
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_up">
         <action
@@ -99,7 +99,7 @@
     </fragment>
     <fragment
         android:id="@+id/changePasswordFragment"
-        android:name="com.example.metproject.ChangePasswordFragment"
+        android:name="com.app.maktabielektroni.ChangePasswordFragment"
         android:label="fragment_change_password"
         tools:layout="@layout/fragment_change_password">
         <action
@@ -108,7 +108,7 @@
     </fragment>
     <fragment
         android:id="@+id/forgotPasswordFragment"
-        android:name="com.example.metproject.ForgotPasswordFragment"
+        android:name="com.app.maktabielektroni.ForgotPasswordFragment"
         android:label="fragment_forgot_password"
         tools:layout="@layout/fragment_forgot_password">
         <action
@@ -120,7 +120,7 @@
     </fragment>
     <fragment
         android:id="@+id/passwordRecoveryFragment"
-        android:name="com.example.metproject.PasswordRecoveryFragment"
+        android:name="com.app.maktabielektroni.PasswordRecoveryFragment"
         android:label="fragment_password_recovery"
         tools:layout="@layout/fragment_password_recovery">
         <action
@@ -132,7 +132,7 @@
     </fragment>
     <fragment
         android:id="@+id/home"
-        android:name="com.example.metproject.MainFragment"
+        android:name="com.app.maktabielektroni.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main">
         <action
@@ -149,7 +149,7 @@
 
     <fragment
         android:id="@+id/classes"
-        android:name="com.example.metproject.ClassesFragment"
+        android:name="com.app.maktabielektroni.ClassesFragment"
         android:label="fragment_class"
         tools:layout="@layout/fragment_classes">
         <action
@@ -158,7 +158,7 @@
     </fragment>
     <fragment
         android:id="@+id/subjects"
-        android:name="com.example.metproject.SubjectsFragment"
+        android:name="com.app.maktabielektroni.SubjectsFragment"
         android:label="fragment_subjects"
         tools:layout="@layout/fragment_subjects" >
         <action
@@ -168,7 +168,7 @@
 
     <fragment
         android:id="@+id/olympiad"
-        android:name="com.example.metproject.OlympiadFragment"
+        android:name="com.app.maktabielektroni.OlympiadFragment"
         android:label="fragment_olympiad"
         tools:layout="@layout/fragment_olympiad" >
         <action
@@ -177,13 +177,23 @@
     </fragment>
 
     <fragment
+        android:id="@+id/MMTFragment"
+        android:name="com.app.maktabielektroni.MMTFragment"
+        android:label="fragment_m_m_t"
+        tools:layout="@layout/fragment_m_m_t" >
+        <action
+            android:id="@+id/action_MMTFragment_to_MMTSubjectListFragment"
+            app:destination="@id/MMTSubjectListFragment" />
+    </fragment>
+
+    <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.metproject.SettingsFragment"
+        android:name="com.app.maktabielektroni.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
     <dialog
         android:id="@+id/subjectsBottomSheetDialogFragment"
-        android:name="com.example.metproject.SubjectsBottomSheetDialogFragment"
+        android:name="com.app.maktabielektroni.SubjectsBottomSheetDialogFragment"
         android:label="SubjectsBottomSheetDialogFragment"
         tools:layout="@layout/fragment_subjects_bottom_sheet_dialog"
         >
@@ -193,7 +203,7 @@
     </dialog>
     <dialog
         android:id="@+id/classesBottomSheetDialogFragment"
-        android:name="com.example.metproject.ClassesBottomSheetDialogFragment"
+        android:name="com.app.maktabielektroni.ClassesBottomSheetDialogFragment"
         android:label="fragment_classes_bottom_sheet_dialog"
         tools:layout="@layout/fragment_classes_bottom_sheet_dialog" >
         <action
@@ -202,7 +212,7 @@
     </dialog>
     <fragment
         android:id="@+id/themeFragmentList"
-        android:name="com.example.metproject.ThemeFragmentList"
+        android:name="com.app.maktabielektroni.ThemeFragmentList"
         android:label="fragment_theme_list"
         tools:layout="@layout/fragment_theme_list" >
         <action
@@ -213,7 +223,7 @@
     <fragment
         android:id="@+id/themeDetailFragment"
         tools:layout="@layout/fragment_theme_detail"
-        android:name="com.example.metproject.ThemeDetailFragment"
+        android:name="com.app.maktabielektroni.ThemeDetailFragment"
         android:label="ThemeDetailFragment" >
         <action
             android:id="@+id/action_themeDetailFragment_to_exerciseFragment"
@@ -222,17 +232,17 @@
 
     <fragment
         android:id="@+id/WebViewerFragment"
-        android:name="com.example.metproject.WebViewerFragment"
+        android:name="com.app.maktabielektroni.WebViewerFragment"
         android:label="fragment_pdf_viewer"
         tools:layout="@layout/fragment_web_viewer" />
     <fragment
         android:id="@+id/exerciseFragment"
-        android:name="com.example.metproject.ExerciseFragment"
+        android:name="com.app.maktabielektroni.ExerciseFragment"
         android:label="fragment_exercise"
         tools:layout="@layout/fragment_exercise" />
     <fragment
         android:id="@+id/newsFragment"
-        android:name="com.example.metproject.NewsFragment"
+        android:name="com.app.maktabielektroni.NewsFragment"
         android:label="fragment_news"
         tools:layout="@layout/fragment_news" >
         <action
@@ -241,7 +251,7 @@
     </fragment>
     <dialog
         android:id="@+id/olympiadSubjectsFragment"
-        android:name="com.example.metproject.OlympiadSubjectsFragment"
+        android:name="com.app.maktabielektroni.OlympiadSubjectsFragment"
         android:label="fragment_olympiad_subjects"
         tools:layout="@layout/fragment_olympiad_subjects" >
         <action
@@ -250,7 +260,7 @@
     </dialog>
     <fragment
         android:id="@+id/olympiadDetailFragment"
-        android:name="com.example.metproject.OlympiadDetailFragment"
+        android:name="com.app.maktabielektroni.OlympiadDetailFragment"
         android:label="OlympiadDetailFragment"
         tools:layout="@layout/fragment_olympiad_detail"
         >
@@ -258,5 +268,26 @@
             android:id="@+id/action_olympiadDetailFragment_to_exerciseFragment"
             app:destination="@id/exerciseFragment" />
     </fragment>
+
+    <dialog
+        android:id="@+id/MMTSubjectListFragment"
+        android:name="com.app.maktabielektroni.MMTSubjectsFragment"
+        android:label="fragment_m_m_t_subject_list_list_dialog"
+        tools:layout="@layout/fragment_m_m_t_subjects" >
+        <action
+            android:id="@+id/action_MMTSubjectListFragment_to_MMTDetailFragment"
+            app:destination="@id/MMTDetailFragment" />
+    </dialog>
+    <fragment
+        android:id="@+id/MMTDetailFragment"
+        android:name="com.app.maktabielektroni.MMTDetailFragment"
+        android:label="MMTDetailFragment"
+        tools:layout="@layout/fragment_m_m_t_detail"
+        >
+        <action
+            android:id="@+id/action_MMTDetailFragment_to_exerciseFragment"
+            app:destination="@id/exerciseFragment" />
+    </fragment>
+
 
 </navigation>

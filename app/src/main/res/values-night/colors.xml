@@ -16,7 +16,7 @@
     <color name="blueCard">#4886FF</color>
 
     <color name="lightblueCard">#6A7F94</color>
-    <color name="greyCard">#EDF0F2</color>
+    <color name="greyCard">#25938B8B</color>
 
     <color name="greyText">#8A8A8A</color>
     <color name="light_grey_text_color">#999999</color>
@@ -34,12 +34,16 @@
     <color name="purple_pale_text_color">#616C8C</color>
 
     <color name="transparent">#00616C8C</color>
-    <color name="subjectsItemFilterColor">#BA595A5C</color>
+    <color name="subjectsItemFilterColor">#B7393838</color>
     <color name="pinkCard">#FF6F6F</color>
 
-    <color name="darkgreyText">#4F4F4F</color>
+    <color name="darkgreyText">#B8B4B4</color>
 
     <color name="news_fragment_background">#EBEEF0</color>
+
+    <color name="news_item">#2C2A2A</color>
+
+    <color name="retry_btn_text">#BA595A5C</color>
 
 
 

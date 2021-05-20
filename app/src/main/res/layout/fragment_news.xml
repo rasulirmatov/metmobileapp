@@ -51,7 +51,7 @@
             android:id="@+id/rv_container"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="@color/news_fragment_background"
+            android:background="@color/backgroundDarker"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/topAppBar">
 
@@ -111,6 +111,7 @@
                 <Button
                     android:id="@+id/btn_reload"
                     android:layout_width="150dp"
+                    android:textColor="@color/retry_btn_text"
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp"
                     android:text="Такрор" />

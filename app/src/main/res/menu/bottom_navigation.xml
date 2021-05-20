@@ -18,7 +18,7 @@
         android:icon="@drawable/ic_olympiada"
         android:title="Олимпиада" />
     <item
-        android:id="@+id/mmt"
+        android:id="@+id/MMTFragment"
         android:icon="@drawable/ic_mmt"
         android:title="ММТ" />
 

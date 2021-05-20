@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.metproject.viewModels.ThemeFragmentListViewModel" />
+            type="com.app.maktabielektroni.viewModels.ThemeFragmentListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -68,8 +68,9 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:text="Синфи"
+                android:textStyle="bold"
                 android:textAllCaps="true"
-                android:textColor="#000000"
+                android:textColor="@color/dark_grey_text_color"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -81,7 +82,8 @@
                 android:layout_marginStart="3dp"
                 android:text=""
                 android:textAllCaps="true"
-                android:textColor="#000000"
+                android:textStyle="bold"
+                android:textColor="@color/dark_grey_text_color"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@+id/class_indicator"
                 app:layout_constraintStart_toEndOf="@+id/class_indicator"
@@ -141,10 +143,10 @@
                 <Button
                     android:id="@+id/btn_reload"
                     android:layout_width="150dp"
+                    android:textColor="@color/retry_btn_text"
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp"
-                    android:text="Такрор"
-                    />
+                    android:text="Такрор" />
 
             </LinearLayout>
 
@@ -173,8 +175,15 @@
                 app:lottie_loop="true"
                 app:lottie_rawRes="@raw/anim_empty" />
 
-        </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-20dp"
+                android:text="Маълумот ҳоло вуҷуд надорад!"
+                android:textColor="@color/greyText"
+                android:textSize="16sp" />
 
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

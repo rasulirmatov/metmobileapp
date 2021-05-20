@@ -48,6 +48,38 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="Theme.PdfView.SelectedTheme" parent="@style/Theme.PdfView.Light">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/background</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="l">false</item>
+        <item name="android:forceDarkAllowed">false</item>
+
+        <item name="pdfView_backIcon">@drawable/ic_icon_go_to_back</item>
+        <item name="pdfView_actionBarTint">@color/background</item>
+        <item name="pdfView_titleTextStyle">@style/actionBarTitleAppearance</item>
+        <item name="pdfView_progressBar">@style/customProgressBar</item>
+    </style>
+
+    <style name="actionBarTitleAppearance" parent="TextAppearance.AppCompat.Title">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">left</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="customProgressBar" parent="Widget.AppCompat.ProgressBar">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:indeterminateTint">@color/secondary</item>
+        <!--        <item name="android:indeterminateDrawable">@drawable/progress_circle</item>-->
+
+        <!--        <item name="android:interpolator">@android:interpolator/accelerate_decelerate</item>-->
+
+        <item name="android:visibility">gone</item>
+    </style>
+
 
 
 </resources>

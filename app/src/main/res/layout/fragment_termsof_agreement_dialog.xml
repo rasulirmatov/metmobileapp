@@ -67,6 +67,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="10dp"
+        android:backgroundTint="@color/primary"
         android:text="@string/bottom_sheet_confirm_button_text"
         android:textColor="@color/white_button_text_color"
         app:layout_constraintBottom_toBottomOf="parent"

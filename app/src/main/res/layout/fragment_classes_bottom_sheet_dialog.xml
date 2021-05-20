@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.metproject.viewModels.ClassesFragmentBottomSheetDialogViewModel" />
+            type="com.app.maktabielektroni.viewModels.ClassesFragmentBottomSheetDialogViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -75,6 +75,14 @@
                     app:lottie_autoPlay="true"
                     app:lottie_loop="true"
                     app:lottie_rawRes="@raw/anim_empty" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-20dp"
+                    android:text="Маълумот ҳоло вуҷуд надорад!"
+                    android:textColor="@color/greyText"
+                    android:textSize="16sp" />
 
             </LinearLayout>
 

@@ -39,6 +39,11 @@
     <color name="subjectsItemFilterColor">#A807294C</color>
     <color name="pinkCard">#FF6F6F</color>
 
+    <color name="news_item">#07294C</color>
+
+    <color name="retry_btn_text">#FFFFFF</color>
+
+
 
     <!--    <color name="primary">#07294C</color>-->
 <!--    <color name="secondary">#FFC600</color>-->
