@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.webkit.WebViewClient
 import androidx.databinding.DataBindingUtil
 import com.app.maktabielektroni.databinding.FragmentExerciseBinding
+import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.transition.MaterialFadeThrough
 
 class ExerciseFragment : BaseFragment() {
     private lateinit var binding: FragmentExerciseBinding
@@ -45,6 +47,12 @@ class ExerciseFragment : BaseFragment() {
             "<html><body>" + arguments?.getString("get_exercise").toString() + "</body></html>",
             "text/html", "UTF-8"
         );
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enterTransition = MaterialFadeThrough()
+        exitTransition = MaterialFadeThrough()
     }
 
 

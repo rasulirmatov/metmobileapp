@@ -23,6 +23,7 @@ import com.app.maktabielektroni.viewModels.ThemeDetailFragmentViewModel
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
+import com.google.android.material.transition.MaterialFadeThrough
 import com.rajat.pdfviewer.PdfViewerActivity
 import kotlinx.android.synthetic.main.fragment_theme_detail.*
 
@@ -165,20 +166,28 @@ class ThemeDetailFragment : BaseFragment(), Player.EventListener {
                         videoView(Constants.video_path + it.data.videoSrc)
                         video_src = (Constants.video_path + it.data.videoSrc)
                         pdf_src = (Constants.pdf_path + it.data.pdfSrc)
-                        if (it.data.pdfExercise.contains(".pdf", ignoreCase = true)) {
-                            pdf_exercise = Constants.pdf_path+it.data.pdfExercise
-                            is_pdf_src = true
-                        }else {
-                            pdf_exercise = it.data.pdfExercise
-                            is_pdf_src = false
-                            bundle.putString("get_exercise",pdf_exercise)
+                        if (it.data.pdfExercise != null) {
+                            if (it.data.pdfExercise.contains(".pdf", ignoreCase = true)) {
+                                pdf_exercise = Constants.pdf_path+it.data.pdfExercise
+                                is_pdf_src = true
+                            }else {
+                                pdf_exercise = it.data.pdfExercise
+                                is_pdf_src = false
+                                bundle.putString("get_exercise",pdf_exercise)
+                            }
                         }
+
                         if (it.data.pdfSrc.isEmpty()) pdf_src = null
                         bundle.putString("pdf_src", pdf_src)
                         hide_show_items("show_all")
                         binding.themeName.text = ("Мавзӯи " + it.data.themeNum + " " + it.data.name)
-                        removeHtmlTags(it.data.introduction)?.let { it1 -> description(it1) }
-                        peshguftor = removeHtmlTags(it.data.introduction)
+                        if (!it.data.introduction.isNullOrEmpty()){
+                            removeHtmlTags(it.data.introduction)?.let { it1 -> description(it1) }
+                            peshguftor = removeHtmlTags(it.data.introduction)
+                        } else {
+                            binding.peshguftorCard.visibility = View.GONE
+                        }
+
                         theme_id = it.data.id.toString()
                     }
                 } else {
@@ -444,11 +453,13 @@ class ThemeDetailFragment : BaseFragment(), Player.EventListener {
 
         }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val inflater = TransitionInflater.from(requireContext())
-        exitTransition = inflater.inflateTransition(R.transition.slide_right)
-        enterTransition = inflater.inflateTransition(R.transition.slide_left)
+//        exitTransition = inflater.inflateTransition(R.transition.slide_right)
+//        enterTransition = inflater.inflateTransition(R.transition.slide_left)
+        enterTransition = MaterialFadeThrough()
     }
 
 }

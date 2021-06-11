@@ -16,6 +16,7 @@ import com.app.maktabielektroni.models.response.ResponseOlympicDetail
 import com.app.maktabielektroni.utils.Constants
 import com.app.maktabielektroni.viewModels.MMTDetailFragmentViewModel
 import com.app.maktabielektroni.viewModels.OlympiadDetailFragmentViewModel
+import com.google.android.material.transition.MaterialFadeThrough
 import com.rajat.pdfviewer.PdfViewerActivity
 
 
@@ -190,8 +191,10 @@ class MMTDetailFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val inflater = TransitionInflater.from(requireContext())
-        exitTransition = inflater.inflateTransition(R.transition.slide_right)
-        enterTransition = inflater.inflateTransition(R.transition.slide_left)
+//        exitTransition = inflater.inflateTransition(R.transition.slide_right)
+//        enterTransition = inflater.inflateTransition(R.transition.slide_left)
+        enterTransition = MaterialFadeThrough()
+        exitTransition = MaterialFadeThrough()
     }
 
 

@@ -11,6 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.os.bundleOf
+import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.app.maktabielektroni.R
 import com.app.maktabielektroni.models.response.Slide
@@ -61,7 +63,11 @@ class SliderAdapter(private val context: Context) :
             .into(viewHolder.imageViewBackground)
 
         viewHolder.itemView1.setOnClickListener(View.OnClickListener {
-            context?.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(Constants.slider_url+sliderItem.url)))
+//            context?.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(Constants.slider_url+sliderItem.url)))
+            val bundle = bundleOf("url" to Constants.slider_url+sliderItem.url)
+            bundle.putString("title", sliderItem.title)
+            Navigation.findNavController(it)
+                .navigate(R.id.action_home_to_WebViewerFragment, bundle)
         })
 
     }

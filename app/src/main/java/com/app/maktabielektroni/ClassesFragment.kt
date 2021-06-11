@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.app.maktabielektroni.databinding.FragmentClassesBinding
 import com.app.maktabielektroni.models.response.ResponseClassesModel
 import com.app.maktabielektroni.viewModels.ClassesFragmentViewModel
+import com.google.android.material.transition.MaterialSharedAxis
 import kotlinx.android.synthetic.main.fragment_classes.*
 
 
@@ -22,6 +23,11 @@ class ClassesFragment : BaseFragment() {
 
     private val viewModel: ClassesFragmentViewModel by lazy {
         ViewModelProviders.of(this).get(ClassesFragmentViewModel::class.java)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
     }
 
 

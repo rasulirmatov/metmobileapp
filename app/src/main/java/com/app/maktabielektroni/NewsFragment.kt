@@ -13,6 +13,7 @@ import com.app.maktabielektroni.adapters.NewsFragmentAdapter
 import com.app.maktabielektroni.databinding.FragmentNewsBinding
 import com.app.maktabielektroni.models.response.ResponseNews
 import com.app.maktabielektroni.viewModels.MainFragmentViewModel
+import com.google.android.material.transition.MaterialFadeThrough
 
 class NewsFragment : BaseFragment() {
 
@@ -111,8 +112,10 @@ class NewsFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val inflater = TransitionInflater.from(requireContext())
-        exitTransition = inflater.inflateTransition(R.transition.slide_right)
-        enterTransition = inflater.inflateTransition(R.transition.slide_left)
+//        exitTransition = inflater.inflateTransition(R.transition.slide_up)
+        enterTransition = inflater.inflateTransition(R.transition.slide_up)
+//        enterTransition = MaterialFadeThrough()
+//        exitTransition = MaterialFadeThrough()
     }
 
 

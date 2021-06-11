@@ -132,8 +132,10 @@ class ThemeFragmentList : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val inflater = TransitionInflater.from(requireContext())
-        exitTransition = inflater.inflateTransition(R.transition.slide_right)
-        enterTransition = inflater.inflateTransition(R.transition.slide_left)
+//        exitTransition = inflater.inflateTransition(R.transition.slide_right)
+//        enterTransition = inflater.inflateTransition(R.transition.slide_left)
+        enterTransition = MaterialFadeThrough()
+        exitTransition = MaterialFadeThrough()
     }
 
 }

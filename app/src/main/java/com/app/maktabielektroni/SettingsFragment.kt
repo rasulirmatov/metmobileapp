@@ -12,6 +12,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.transition.TransitionInflater
 import com.app.maktabielektroni.databinding.FragmentSettingsBinding
+import com.google.android.material.transition.MaterialFadeThrough
 import com.google.firebase.messaging.FirebaseMessaging
 
 
@@ -88,8 +89,12 @@ class SettingsFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val inflater = TransitionInflater.from(requireContext())
-        exitTransition = inflater.inflateTransition(R.transition.slide_right)
-        enterTransition = inflater.inflateTransition(R.transition.slide_left)
+//        exitTransition = inflater.inflateTransition(R.transition.slide_right)
+//        enterTransition = inflater.inflateTransition(R.transition.slide_left)
+
+        enterTransition = MaterialFadeThrough()
+
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

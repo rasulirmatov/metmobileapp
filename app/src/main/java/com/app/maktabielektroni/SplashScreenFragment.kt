@@ -12,6 +12,8 @@ import android.view.animation.AnimationUtils
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.transition.TransitionInflater
+import com.google.android.material.transition.MaterialFadeThrough
+import com.google.android.material.transition.MaterialSharedAxis
 import kotlinx.android.synthetic.main.fragment_splash_screen.*
 
 class SplashScreenFragment : Fragment() {
@@ -35,7 +37,14 @@ class SplashScreenFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         val inflater = TransitionInflater.from(requireContext())
-        exitTransition = inflater.inflateTransition(R.transition.slide_right)
+//        exitTransition = inflater.inflateTransition(R.transition.slide_up)
+        exitTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true)
+        enterTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true)
+        returnTransition = MaterialSharedAxis(MaterialSharedAxis.Z, false)
+        reenterTransition = MaterialSharedAxis(MaterialSharedAxis.Z, false)
+
+//        exitTransition = MaterialFadeThrough()
+//        enterTransition = MaterialFadeThrough()
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

@@ -28,14 +28,14 @@ class RetrofitClient {
             }else {
                 logging.level = HttpLoggingInterceptor.Level.NONE
             }
-            builder.addInterceptor(
-                ChuckerInterceptor.Builder(context)
-                    .collector(ChuckerCollector(context))
-                    .maxContentLength(250000L)
-                    .redactHeaders(emptySet())
-                    .alwaysReadResponseBody(false)
-                    .build()
-            )
+//            builder.addInterceptor(
+//                ChuckerInterceptor.Builder(context)
+//                    .collector(ChuckerCollector(context))
+//                    .maxContentLength(250000L)
+//                    .redactHeaders(emptySet())
+//                    .alwaysReadResponseBody(false)
+//                    .build()
+//            )
             builder.connectTimeout(60000, TimeUnit.SECONDS)
             builder.writeTimeout(120000, TimeUnit.SECONDS)
             builder.readTimeout(120000, TimeUnit.SECONDS)

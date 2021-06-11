@@ -27,6 +27,8 @@ import com.app.maktabielektroni.models.HomeSliderModel
 import com.app.maktabielektroni.models.response.*
 import com.app.maktabielektroni.utils.Constants
 import com.app.maktabielektroni.viewModels.MainFragmentViewModel
+import com.google.android.material.transition.MaterialFadeThrough
+import com.google.android.material.transition.MaterialSharedAxis
 import com.rajat.pdfviewer.PdfViewerActivity
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
 import com.smarteist.autoimageslider.IndicatorView.draw.controller.DrawController
@@ -81,6 +83,7 @@ class MainFragment : BaseFragment() {
         super.onCreate(savedInstanceState)
         // This callback will only be called when HameFragment is at least Started.
         // Call Back for exit programm
+        exitTransition = MaterialFadeThrough()
         val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
             if (pressedTime + 2000 > System.currentTimeMillis()) {
                 requireActivity().moveTaskToBack(true);
@@ -202,6 +205,12 @@ class MainFragment : BaseFragment() {
                     activity?.let {
                         val intent = Intent (it, AboutAppActivity::class.java)
                         it.startActivity(intent)
+                    }
+                    true
+                }
+                R.id.exit -> {
+                    activity?.let {
+                        requireActivity().finish()
                     }
                     true
                 }
@@ -365,6 +374,26 @@ class MainFragment : BaseFragment() {
             )
         })
     }
+
+//    override fun onPause() {
+//        super.onPause()
+//        showToast("OnPause")
+//    }
+//
+//    override fun onResume() {
+//        super.onResume()
+//        showToast("OnResume")
+//    }
+//
+//    override fun onStop() {
+//        super.onStop()
+//        showToast("OnStop")
+//    }
+//
+//    override fun onStart() {
+//        super.onStart()
+//        showToast("OnStart")
+//    }
 
 
 }

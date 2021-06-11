@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.transition.TransitionInflater
 import com.app.maktabielektroni.databinding.FragmentWebViewerBinding
+import com.google.android.material.transition.MaterialFadeThrough
 import com.google.android.material.transition.MaterialSharedAxis
 import kotlinx.android.synthetic.main.fragment_web_viewer.*
 import java.lang.Exception
@@ -93,8 +94,10 @@ class WebViewerFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val inflater = TransitionInflater.from(requireContext())
-        exitTransition = inflater.inflateTransition(R.transition.slide_right)
-        enterTransition = inflater.inflateTransition(R.transition.slide_left)
+//        exitTransition = inflater.inflateTransition(R.transition.slide_right)
+//        enterTransition = inflater.inflateTransition(R.transition.slide_left)
+        enterTransition = MaterialFadeThrough()
+        exitTransition = MaterialFadeThrough()
 //        enterTransition = MaterialSharedAxis(MaterialSharedAxis.Z, /* forward= */ true)
 //        returnTransition = MaterialSharedAxis(MaterialSharedAxis.Z, /* forward= */ false)
 //        exitTransition = MaterialSharedAxis(MaterialSharedAxis.Z, /* forward= */ true)
